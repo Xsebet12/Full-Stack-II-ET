@@ -1,0 +1,508 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --< com.SebastianCornejo.EmmanuelMoreno:Proyecto-Fullstack-ll-React >---
+[INFO] Building Proyecto-Fullstack-ll-React 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:3.5.6:run (default-cli) > test-compile @ Proyecto-Fullstack-ll-React >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ Proyecto-Fullstack-ll-React ---
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] Copying 11 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ Proyecto-Fullstack-ll-React ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 63 source files with javac [debug parameters release 21] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ Proyecto-Fullstack-ll-React ---
+[INFO] Copying 1 resource from src\test\resources to target\test-classes
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ Proyecto-Fullstack-ll-React ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 17 source files with javac [debug parameters release 21] to target\test-classes
+[INFO] 
+[INFO] <<< spring-boot:3.5.6:run (default-cli) < test-compile @ Proyecto-Fullstack-ll-React <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:3.5.6:run (default-cli) @ Proyecto-Fullstack-ll-React ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.5.6)
+
+2025-10-21T15:44:16.060-03:00  INFO 22472 --- [Proyecto-Fullstack-ll-React] [  restartedMain] .P.F.ProyectoFullstackLlReactApplication : Starting ProyectoFullstackLlReactApplication using Java 22.0.2 with PID 22472 (E:\Fullstack\Fullstackll\target\classes started by xsebe in E:\Fullstack\Fullstackll)
+2025-10-21T15:44:16.063-03:00 DEBUG 22472 --- [Proyecto-Fullstack-ll-React] [  restartedMain] .P.F.ProyectoFullstackLlReactApplication : Running with Spring Boot v3.5.6, Spring v6.2.11
+2025-10-21T15:44:16.066-03:00  INFO 22472 --- [Proyecto-Fullstack-ll-React] [  restartedMain] .P.F.ProyectoFullstackLlReactApplication : The following 1 profile is active: "local"
+2025-10-21T15:44:16.117-03:00  INFO 22472 --- [Proyecto-Fullstack-ll-React] [  restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in C:\Users\xsebe\.m2\repository\com\oracle\database\jdbc\ojdbc11\23.7.0.25.01\ojdbc11-23.7.0.25.01.jar referenced one or more files that do not exist: file:/C:/Users/xsebe/.m2/repository/com/oracle/database/jdbc/ojdbc11/23.7.0.25.01/oraclepki.jar
+2025-10-21T15:44:16.119-03:00  INFO 22472 --- [Proyecto-Fullstack-ll-React] [  restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in C:\Users\xsebe\.m2\repository\com\oracle\database\security\oraclepki\21.17.0.0\oraclepki-21.17.0.0.jar referenced one or more files that do not exist: file:/C:/Users/xsebe/.m2/repository/com/oracle/database/security/oraclepki/21.17.0.0/osdt_core.jar,file:/C:/Users/xsebe/.m2/repository/com/oracle/database/security/oraclepki/21.17.0.0/osdt_cert.jar,file:/C:/Users/xsebe/.m2/repository/com/oracle/database/security/oraclepki/oracle.osdt/osdt_core.jar,file:/C:/Users/xsebe/.m2/repository/com/oracle/database/security/oraclepki/oracle.osdt/osdt_cert.jar
+2025-10-21T15:44:16.122-03:00  INFO 22472 --- [Proyecto-Fullstack-ll-React] [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-10-21T15:44:16.126-03:00  INFO 22472 --- [Proyecto-Fullstack-ll-React] [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-10-21T15:44:17.037-03:00  INFO 22472 --- [Proyecto-Fullstack-ll-React] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-21T15:44:17.169-03:00  INFO 22472 --- [Proyecto-Fullstack-ll-React] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 120 ms. Found 9 JPA repository interfaces.
+2025-10-21T15:44:17.681-03:00  INFO 22472 --- [Proyecto-Fullstack-ll-React] [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-10-21T15:44:17.693-03:00  INFO 22472 --- [Proyecto-Fullstack-ll-React] [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-10-21T15:44:17.696-03:00  INFO 22472 --- [Proyecto-Fullstack-ll-React] [  restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.46]
+2025-10-21T15:44:17.744-03:00  INFO 22472 --- [Proyecto-Fullstack-ll-React] [  restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-10-21T15:44:17.747-03:00  INFO 22472 --- [Proyecto-Fullstack-ll-React] [  restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1618 ms
+2025-10-21T15:44:17.874-03:00  INFO 22472 --- [Proyecto-Fullstack-ll-React] [  restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-10-21T15:44:17.918-03:00  INFO 22472 --- [Proyecto-Fullstack-ll-React] [  restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.29.Final
+2025-10-21T15:44:17.945-03:00  INFO 22472 --- [Proyecto-Fullstack-ll-React] [  restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-10-21T15:44:18.160-03:00  INFO 22472 --- [Proyecto-Fullstack-ll-React] [  restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-21T15:44:18.186-03:00  INFO 22472 --- [Proyecto-Fullstack-ll-React] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-10-21T15:44:18.516-03:00  INFO 22472 --- [Proyecto-Fullstack-ll-React] [  restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:localdb user=SA
+2025-10-21T15:44:18.520-03:00  INFO 22472 --- [Proyecto-Fullstack-ll-React] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-10-21T15:44:18.541-03:00  WARN 22472 --- [Proyecto-Fullstack-ll-React] [  restartedMain] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-10-21T15:44:18.559-03:00  INFO 22472 --- [Proyecto-Fullstack-ll-React] [  restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 2.3.232
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-10-21T15:44:19.451-03:00  INFO 22472 --- [Proyecto-Fullstack-ll-React] [  restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Hibernate: 
+    drop table if exists carritos cascade 
+Hibernate: 
+    drop table if exists categorias cascade 
+Hibernate: 
+    drop table if exists comuna cascade 
+Hibernate: 
+    drop table if exists imagenes_producto cascade 
+Hibernate: 
+    drop table if exists item_carrito cascade 
+Hibernate: 
+    drop table if exists productos cascade 
+Hibernate: 
+    drop table if exists provider_contacts cascade 
+Hibernate: 
+    drop table if exists providers cascade 
+Hibernate: 
+    drop table if exists region cascade 
+Hibernate: 
+    drop table if exists usuarios cascade 
+Hibernate: 
+    create table carritos (
+        id bigint generated by default as identity,
+        usuario_id bigint not null unique,
+        primary key (id)
+    )
+Hibernate: 
+    create table categorias (
+        id bigint generated by default as identity,
+        nombre varchar(255) not null unique,
+        primary key (id)
+    )
+Hibernate: 
+    create table comuna (
+        id_comuna integer not null,
+        id_region integer not null,
+        nom_comuna varchar(100) not null,
+        primary key (id_comuna)
+    )
+Hibernate: 
+    create table imagenes_producto (
+        id bigint generated by default as identity,
+        producto_id bigint,
+        url varchar(255),
+        primary key (id)
+    )
+Hibernate: 
+    create table item_carrito (
+        cantidad integer not null,
+        precio_unitario numeric(19,2) not null,
+        carrito_id bigint not null,
+        creado_en timestamp(6) with time zone not null,
+        id bigint generated by default as identity,
+        producto_id bigint not null,
+        primary key (id),
+        unique (carrito_id, producto_id)
+    )
+Hibernate: 
+    create table productos (
+        habilitado boolean not null,
+        precio numeric(19,2),
+        stock integer,
+        categoria_id bigint not null,
+        id bigint generated by default as identity,
+        provider_id bigint,
+        descripcion varchar(255),
+        imagen varchar(255),
+        nombre varchar(255) not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table provider_contacts (
+        id bigint generated by default as identity,
+        provider_id bigint not null,
+        email varchar(255) not null,
+        name varchar(255) not null,
+        phone varchar(255) not null,
+        role varchar(255) not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table providers (
+        id bigint generated by default as identity,
+        company_name varchar(255) not null,
+        logo_url varchar(255),
+        phone varchar(255),
+        service_type varchar(255) not null,
+        url varchar(255),
+        estado enum ('ACTIVO','INACTIVO') not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table region (
+        id_region integer not null,
+        nom_region varchar(100) not null,
+        primary key (id_region)
+    )
+Hibernate: 
+    create table usuarios (
+        dv varchar(1) not null,
+        habilitado boolean not null,
+        id_comuna integer not null,
+        creado_en timestamp(6) with time zone not null,
+        id bigint generated by default as identity,
+        apellidos varchar(255) not null,
+        contrasena varchar(255) not null,
+        correo_electronico varchar(255) not null,
+        direccion varchar(255) not null,
+        nombres varchar(255) not null,
+        rut varchar(255) not null,
+        rol enum ('ADMIN','CLIENT') not null,
+        primary key (id),
+        unique (rut),
+        unique (correo_electronico)
+    )
+Hibernate: 
+    alter table if exists carritos 
+       add constraint FK1oqtem41uj4podo8a2lbsyyhm 
+       foreign key (usuario_id) 
+       references usuarios
+Hibernate: 
+    alter table if exists comuna 
+       add constraint FKjlc8rtqurvwtswxjrmkmj5isy 
+       foreign key (id_region) 
+       references region
+Hibernate: 
+    alter table if exists imagenes_producto 
+       add constraint FK5i5mdqwghroeygoay3a1ikn80 
+       foreign key (producto_id) 
+       references productos
+Hibernate: 
+    alter table if exists item_carrito 
+       add constraint FK8fr6xn504subiyopd73j7thy1 
+       foreign key (carrito_id) 
+       references carritos
+Hibernate: 
+    alter table if exists item_carrito 
+       add constraint FK56pta5ak42wucf5fidc7b91fx 
+       foreign key (producto_id) 
+       references productos
+Hibernate: 
+    alter table if exists productos 
+       add constraint FK2fwq10nwymfv7fumctxt9vpgb 
+       foreign key (categoria_id) 
+       references categorias
+Hibernate: 
+    alter table if exists productos 
+       add constraint FKq8euinp22adumob80chfua9ou 
+       foreign key (provider_id) 
+       references providers
+Hibernate: 
+    alter table if exists provider_contacts 
+       add constraint FKciu62o6vpovpund7c5e8dxrdi 
+       foreign key (provider_id) 
+       references providers
+Hibernate: 
+    alter table if exists usuarios 
+       add constraint FKegtvql4orl0y2x12xy26x40qc 
+       foreign key (id_comuna) 
+       references comuna
+2025-10-21T15:44:19.581-03:00  INFO 22472 --- [Proyecto-Fullstack-ll-React] [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-21T15:44:19.850-03:00 DEBUG 22472 --- [Proyecto-Fullstack-ll-React] [  restartedMain] c.S.E.P.F.s.FiltroAutenticacionJwt       : Filter 'filtroAutenticacionJwt' configured for use
+2025-10-21T15:44:19.982-03:00  INFO 22472 --- [Proyecto-Fullstack-ll-React] [  restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name servicioDetallesUsuario
+2025-10-21T15:44:20.394-03:00 DEBUG 22472 --- [Proyecto-Fullstack-ll-React] [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : 49 mappings in 'requestMappingHandlerMapping'
+2025-10-21T15:44:20.494-03:00 DEBUG 22472 --- [Proyecto-Fullstack-ll-React] [  restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**, /images/**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2025-10-21T15:44:20.601-03:00 DEBUG 22472 --- [Proyecto-Fullstack-ll-React] [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-10-21T15:44:20.647-03:00 DEBUG 22472 --- [Proyecto-Fullstack-ll-React] [  restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-10-21T15:44:20.744-03:00  INFO 22472 --- [Proyecto-Fullstack-ll-React] [  restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:localdb'
+2025-10-21T15:44:20.858-03:00  INFO 22472 --- [Proyecto-Fullstack-ll-React] [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-10-21T15:44:20.867-03:00  INFO 22472 --- [Proyecto-Fullstack-ll-React] [  restartedMain] .P.F.ProyectoFullstackLlReactApplication : Started ProyectoFullstackLlReactApplication in 5.242 seconds (process running for 5.65)
+Hibernate: 
+    select
+        u1_0.id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.correo_electronico=? 
+    fetch
+        first ? rows only
+Hibernate: 
+    select
+        u1_0.id 
+    from
+        usuarios u1_0 
+    where
+        u1_0.rut=? 
+    fetch
+        first ? rows only
+Hibernate: 
+    select
+        r1_0.id_region,
+        r1_0.nom_region 
+    from
+        region r1_0 
+    where
+        upper(r1_0.nom_region)=upper(?)
+Hibernate: 
+    select
+        r1_0.id_region,
+        r1_0.nom_region 
+    from
+        region r1_0 
+    where
+        r1_0.id_region=?
+Hibernate: 
+    insert 
+    into
+        region
+        (nom_region, id_region) 
+    values
+        (?, ?)
+Hibernate: 
+    select
+        c1_0.id_comuna,
+        c1_0.nom_comuna,
+        c1_0.id_region 
+    from
+        comuna c1_0 
+    where
+        upper(c1_0.nom_comuna)=upper(?)
+Hibernate: 
+    select
+        c1_0.id_comuna,
+        c1_0.nom_comuna,
+        c1_0.id_region 
+    from
+        comuna c1_0 
+    where
+        c1_0.id_comuna=?
+Hibernate: 
+    insert 
+    into
+        comuna
+        (nom_comuna, id_region, id_comuna) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    select
+        null,
+        c1_0.nom_comuna,
+        c1_0.id_region 
+    from
+        comuna c1_0 
+    where
+        c1_0.id_comuna=?
+Hibernate: 
+    insert 
+    into
+        usuarios
+        (apellidos, id_comuna, contrasena, correo_electronico, creado_en, direccion, dv, habilitado, nombres, rol, rut, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Usuario ADMIN sembrado: admin@example.com / admin123 (rut 11111111)
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.nombre 
+    from
+        categorias c1_0 
+    where
+        upper(c1_0.nombre)=upper(?)
+Hibernate: 
+    insert 
+    into
+        categorias
+        (nombre, id) 
+    values
+        (?, default)
+Hibernate: 
+    select
+        count(*) 
+    from
+        productos p1_0
+Hibernate: 
+    insert 
+    into
+        productos
+        (categoria_id, descripcion, habilitado, imagen, nombre, precio, provider_id, stock, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-10-21T15:45:33.338-03:00  INFO 22472 --- [Proyecto-Fullstack-ll-React] [0.0-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-10-21T15:45:33.344-03:00  INFO 22472 --- [Proyecto-Fullstack-ll-React] [0.0-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-10-21T15:45:33.350-03:00 DEBUG 22472 --- [Proyecto-Fullstack-ll-React] [0.0-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2025-10-21T15:45:33.353-03:00 DEBUG 22472 --- [Proyecto-Fullstack-ll-React] [0.0-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2025-10-21T15:45:33.357-03:00 DEBUG 22472 --- [Proyecto-Fullstack-ll-React] [0.0-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2025-10-21T15:45:33.362-03:00 DEBUG 22472 --- [Proyecto-Fullstack-ll-React] [0.0-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@ed5e7f8
+2025-10-21T15:45:33.364-03:00 DEBUG 22472 --- [Proyecto-Fullstack-ll-React] [0.0-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@dd10ea
+2025-10-21T15:45:33.368-03:00 DEBUG 22472 --- [Proyecto-Fullstack-ll-React] [0.0-8080-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-10-21T15:45:33.371-03:00  INFO 22472 --- [Proyecto-Fullstack-ll-React] [0.0-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 21 ms
+2025-10-21T15:45:33.390-03:00 DEBUG 22472 --- [Proyecto-Fullstack-ll-React] [0.0-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /v3/api-docs
+2025-10-21T15:45:33.396-03:00 DEBUG 22472 --- [Proyecto-Fullstack-ll-React] [0.0-8080-exec-1] c.S.E.P.F.s.FiltroAutenticacionJwt       : Solicitud entrante: GET /v3/api-docs - header Authorization presente: false
+2025-10-21T15:45:33.398-03:00 DEBUG 22472 --- [Proyecto-Fullstack-ll-React] [0.0-8080-exec-1] c.S.E.P.F.s.FiltroAutenticacionJwt       : No se encontró token Bearer para GET /v3/api-docs
+2025-10-21T15:45:33.403-03:00 DEBUG 22472 --- [Proyecto-Fullstack-ll-React] [0.0-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-21T15:45:33.407-03:00 DEBUG 22472 --- [Proyecto-Fullstack-ll-React] [0.0-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /v3/api-docs
+2025-10-21T15:45:33.411-03:00 DEBUG 22472 --- [Proyecto-Fullstack-ll-React] [0.0-8080-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/v3/api-docs", parameters={}
+2025-10-21T15:45:33.415-03:00 DEBUG 22472 --- [Proyecto-Fullstack-ll-React] [0.0-8080-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springdoc.webmvc.api.OpenApiWebMvcResource#openapiJson(HttpServletRequest, String, Locale)
+2025-10-21T15:45:33.759-03:00 DEBUG 22472 --- [Proyecto-Fullstack-ll-React] [0.0-8080-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.SebastianCornejo.EmmanuelMoreno.Proyecto.Fullstack.exception.RestExceptionHandler#handleAll(Exception)
+2025-10-21T15:45:33.760-03:00 ERROR 22472 --- [Proyecto-Fullstack-ll-React] [0.0-8080-exec-1] c.S.E.P.F.e.RestExceptionHandler         : Unhandled exception in controller layer
+
+jakarta.servlet.ServletException: Handler dispatch failed: java.lang.NoSuchMethodError: 'void org.springframework.web.method.ControllerAdviceBean.<init>(java.lang.Object)'
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1104) ~[spring-webmvc-6.2.11.jar:6.2.11]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.2.11.jar:6.2.11]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.2.11.jar:6.2.11]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903) ~[spring-webmvc-6.2.11.jar:6.2.11]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564) ~[tomcat-embed-core-10.1.46.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.2.11.jar:6.2.11]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.46.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195) ~[tomcat-embed-core-10.1.46.jar:10.1.46]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.46.jar:10.1.46]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.46.jar:10.1.46]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.46.jar:10.1.46]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.46.jar:10.1.46]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110) ~[spring-web-6.2.11.jar:6.2.11]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.46.jar:10.1.46]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.46.jar:10.1.46]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108) ~[spring-web-6.2.11.jar:6.2.11]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108) ~[spring-web-6.2.11.jar:6.2.11]
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231) ~[spring-security-web-6.5.5.jar:6.5.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365) ~[spring-security-web-6.5.5.jar:6.5.5]
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:101) ~[spring-security-web-6.5.5.jar:6.5.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.5.jar:6.5.5]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:125) ~[spring-security-web-6.5.5.jar:6.5.5]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:119) ~[spring-security-web-6.5.5.jar:6.5.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.5.jar:6.5.5]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131) ~[spring-security-web-6.5.5.jar:6.5.5]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85) ~[spring-security-web-6.5.5.jar:6.5.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.5.jar:6.5.5]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100) ~[spring-security-web-6.5.5.jar:6.5.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.5.jar:6.5.5]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179) ~[spring-security-web-6.5.5.jar:6.5.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.5.jar:6.5.5]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-6.5.5.jar:6.5.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.5.jar:6.5.5]
+	at com.SebastianCornejo.EmmanuelMoreno.Proyecto.Fullstack.security.FiltroAutenticacionJwt.doFilterInternal(FiltroAutenticacionJwt.java:54) ~[classes/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.11.jar:6.2.11]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.5.jar:6.5.5]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107) ~[spring-security-web-6.5.5.jar:6.5.5]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93) ~[spring-security-web-6.5.5.jar:6.5.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.5.jar:6.5.5]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91) ~[spring-web-6.2.11.jar:6.2.11]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.11.jar:6.2.11]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.5.jar:6.5.5]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-6.5.5.jar:6.5.5]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-6.5.5.jar:6.5.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.11.jar:6.2.11]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.5.jar:6.5.5]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-6.5.5.jar:6.5.5]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-6.5.5.jar:6.5.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.5.jar:6.5.5]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-6.5.5.jar:6.5.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.11.jar:6.2.11]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.5.jar:6.5.5]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-6.5.5.jar:6.5.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.11.jar:6.2.11]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.5.jar:6.5.5]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233) ~[spring-security-web-6.5.5.jar:6.5.5]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191) ~[spring-security-web-6.5.5.jar:6.5.5]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.2.11.jar:6.2.11]
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52) ~[spring-web-6.2.11.jar:6.2.11]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.2.11.jar:6.2.11]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.2.11.jar:6.2.11]
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:319) ~[spring-security-config-6.5.5.jar:6.5.5]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.2.11.jar:6.2.11]
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$4(HandlerMappingIntrospector.java:267) ~[spring-webmvc-6.2.11.jar:6.2.11]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.2.11.jar:6.2.11]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.2.11.jar:6.2.11]
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:240) ~[spring-security-config-6.5.5.jar:6.5.5]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362) ~[spring-web-6.2.11.jar:6.2.11]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278) ~[spring-web-6.2.11.jar:6.2.11]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.46.jar:10.1.46]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.46.jar:10.1.46]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.2.11.jar:6.2.11]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.11.jar:6.2.11]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.46.jar:10.1.46]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.46.jar:10.1.46]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.2.11.jar:6.2.11]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.11.jar:6.2.11]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.46.jar:10.1.46]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.46.jar:10.1.46]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.2.11.jar:6.2.11]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.11.jar:6.2.11]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.46.jar:10.1.46]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.46.jar:10.1.46]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.46.jar:10.1.46]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.46.jar:10.1.46]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483) ~[tomcat-embed-core-10.1.46.jar:10.1.46]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:116) ~[tomcat-embed-core-10.1.46.jar:10.1.46]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.46.jar:10.1.46]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.46.jar:10.1.46]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.46.jar:10.1.46]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398) ~[tomcat-embed-core-10.1.46.jar:10.1.46]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.46.jar:10.1.46]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903) ~[tomcat-embed-core-10.1.46.jar:10.1.46]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1776) ~[tomcat-embed-core-10.1.46.jar:10.1.46]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.46.jar:10.1.46]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:975) ~[tomcat-embed-core-10.1.46.jar:10.1.46]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:493) ~[tomcat-embed-core-10.1.46.jar:10.1.46]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.46.jar:10.1.46]
+	at java.base/java.lang.Thread.run(Thread.java:1570) ~[na:na]
+Caused by: java.lang.NoSuchMethodError: 'void org.springframework.web.method.ControllerAdviceBean.<init>(java.lang.Object)'
+	at org.springdoc.core.service.GenericResponseService.lambda$getGenericMapResponse$8(GenericResponseService.java:706) ~[springdoc-openapi-starter-common-2.6.0.jar:2.6.0]
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:193) ~[na:na]
+	at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:1024) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:556) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:546) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:622) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.evaluateToArrayNode(AbstractPipeline.java:291) ~[na:na]
+	at java.base/java.util.stream.ReferencePipeline.toArray(ReferencePipeline.java:631) ~[na:na]
+	at java.base/java.util.stream.ReferencePipeline.toArray(ReferencePipeline.java:637) ~[na:na]
+	at java.base/java.util.stream.ReferencePipeline.toList(ReferencePipeline.java:642) ~[na:na]
+	at org.springdoc.core.service.GenericResponseService.getGenericMapResponse(GenericResponseService.java:708) ~[springdoc-openapi-starter-common-2.6.0.jar:2.6.0]
+	at org.springdoc.core.service.GenericResponseService.build(GenericResponseService.java:247) ~[springdoc-openapi-starter-common-2.6.0.jar:2.6.0]
+	at org.springdoc.api.AbstractOpenApiResource.calculatePath(AbstractOpenApiResource.java:499) ~[springdoc-openapi-starter-common-2.6.0.jar:2.6.0]
+	at org.springdoc.api.AbstractOpenApiResource.calculatePath(AbstractOpenApiResource.java:676) ~[springdoc-openapi-starter-common-2.6.0.jar:2.6.0]
+	at org.springdoc.webmvc.api.OpenApiResource.lambda$calculatePath$11(OpenApiResource.java:220) ~[springdoc-openapi-starter-webmvc-api-2.6.0.jar:2.6.0]
+	at java.base/java.util.Optional.ifPresent(Optional.java:178) ~[na:na]
+	at org.springdoc.webmvc.api.OpenApiResource.calculatePath(OpenApiResource.java:201) ~[springdoc-openapi-starter-webmvc-api-2.6.0.jar:2.6.0]
+	at org.springdoc.webmvc.api.OpenApiResource.lambda$getPaths$2(OpenApiResource.java:171) ~[springdoc-openapi-starter-webmvc-api-2.6.0.jar:2.6.0]
+	at java.base/java.util.Optional.ifPresent(Optional.java:178) ~[na:na]
+	at org.springdoc.webmvc.api.OpenApiResource.getPaths(OpenApiResource.java:150) ~[springdoc-openapi-starter-webmvc-api-2.6.0.jar:2.6.0]
+	at org.springdoc.api.AbstractOpenApiResource.getOpenApi(AbstractOpenApiResource.java:353) ~[springdoc-openapi-starter-common-2.6.0.jar:2.6.0]
+	at org.springdoc.webmvc.api.OpenApiResource.openapiJson(OpenApiResource.java:125) ~[springdoc-openapi-starter-webmvc-api-2.6.0.jar:2.6.0]
+	at org.springdoc.webmvc.api.OpenApiWebMvcResource.openapiJson(OpenApiWebMvcResource.java:114) ~[springdoc-openapi-starter-webmvc-api-2.6.0.jar:2.6.0]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258) ~[spring-web-6.2.11.jar:6.2.11]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191) ~[spring-web-6.2.11.jar:6.2.11]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.2.11.jar:6.2.11]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:991) ~[spring-webmvc-6.2.11.jar:6.2.11]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:896) ~[spring-webmvc-6.2.11.jar:6.2.11]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.2.11.jar:6.2.11]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.2.11.jar:6.2.11]
+	... 98 common frames omitted
+
+2025-10-21T15:45:33.774-03:00 DEBUG 22472 --- [Proyecto-Fullstack-ll-React] [0.0-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
+2025-10-21T15:45:33.776-03:00 DEBUG 22472 --- [Proyecto-Fullstack-ll-React] [0.0-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{error=Error interno, status=500}]
+2025-10-21T15:45:33.786-03:00  WARN 22472 --- [Proyecto-Fullstack-ll-React] [0.0-8080-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [jakarta.servlet.ServletException: Handler dispatch failed: java.lang.NoSuchMethodError: 'void org.springframework.web.method.ControllerAdviceBean.<init>(java.lang.Object)']
+2025-10-21T15:45:33.788-03:00 DEBUG 22472 --- [Proyecto-Fullstack-ll-React] [0.0-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 500 INTERNAL_SERVER_ERROR
