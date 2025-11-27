@@ -1,6 +1,5 @@
 package com.SebastianCornejo.Proyecto.Fullstack.dto;
 
-import com.SebastianCornejo.Proyecto.Fullstack.entity.Role;
 import com.SebastianCornejo.Proyecto.Fullstack.entity.TipoCliente;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -51,9 +50,6 @@ public class SolicitudRegistro {
     @NotNull(message = "La comuna (id) es obligatoria")
     @Schema(description = "ID de la comuna seleccionada", example = "1")
     private Integer comunaId; // id de la comuna seleccionada
-
-    @Schema(description = "Rol del usuario (opcional). Si no se envía, será CLIENT", example = "CLIENT")
-    private Role rol; // opcional: si no se envía, será CLIENT
 
     // Atributos opcionales para subtipo Cliente (si tipo=cliente)
     @Schema(description = "Tipo de cliente (opcional)", example = "DETALLE")

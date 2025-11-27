@@ -3,7 +3,6 @@ package com.SebastianCornejo.Proyecto.Fullstack.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.Instant;
-import com.SebastianCornejo.Proyecto.Fullstack.entity.Role;
 
 @Data
 @NoArgsConstructor
@@ -53,11 +52,5 @@ public class Usuario {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_comuna", nullable = false)
-    private Comuna comuna;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "rol", nullable = false)
-    @Builder.Default
-    private Role rol = Role.CLIENT;
-
+    private Comuna comuna;   
 }

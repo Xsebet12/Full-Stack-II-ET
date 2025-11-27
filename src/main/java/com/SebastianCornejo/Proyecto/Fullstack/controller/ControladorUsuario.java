@@ -130,7 +130,6 @@ public class ControladorUsuario {
                 .rut(saved.getRut())
                 .dv(saved.getDv())
                 .correo(saved.getCorreo())
-                .rol(saved.getRol())
                 .direccion(saved.getDireccion())
                 .comuna(saved.getComuna() != null ? saved.getComuna().getNomComuna() : null)
                 .region(saved.getComuna() != null && saved.getComuna().getRegion() != null ? saved.getComuna().getRegion().getNomRegion() : null)
@@ -139,6 +138,21 @@ public class ControladorUsuario {
                 .enabled(saved.getHabilitado())
                 .createdAt(saved.getCreadoEn());
         try {
+            if (saved instanceof com.SebastianCornejo.Proyecto.Fullstack.entity.Empleado e) {
+                b.rol(e.getRol())
+                 .departamento(e.getDepartamento())
+                 .sueldo(e.getSueldo())
+                 .fechaContratacion(e.getFechaContratacion())
+                 .fechaNacimiento(e.getFechaNacimiento())
+                 .fechaSalida(e.getFechaSalida())
+                 .genero(e.getGenero())
+                 .nacionalidad(e.getNacionalidad())
+                 .numeroCuentaBancaria(e.getNumeroCuentaBancaria())
+                 .tipoContrato(e.getTipoContrato())
+                 .banco(e.getBanco())
+                 .celular(e.getCelular())
+                 .cuentaActiva(e.getCuentaActiva());
+            }
             if (saved instanceof com.SebastianCornejo.Proyecto.Fullstack.entity.Cliente c) {
                 b.tipoCliente(c.getTipoCliente())
                  .puntosFidelizacion(c.getPuntosFidelizacion())

@@ -71,7 +71,7 @@ public class ControladorAutenticacion {
     @Operation(summary = "Registrar usuario",
         description = "Registra un nuevo usuario (por defecto CLIENT) y devuelve datos del usuario")
     @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Datos de registro", required = true,
-        content = @Content(mediaType = "application/json", schema = @Schema(implementation = SolicitudRegistro.class), examples = @ExampleObject(value = "{\"nombres\":\"Juan\",\"apellidos\":\"Pérez\",\"rut\":\"12345678\",\"dv\":\"9\",\"correo\":\"juan@example.com\",\"contrasena\":\"secret\",\"direccion\":\"Av. Siempre Viva 123\",\"comunaId\":13101,\"rol\":\"CLIENT\"}")))
+        content = @Content(mediaType = "application/json", schema = @Schema(implementation = SolicitudRegistro.class), examples = @ExampleObject(value = "{\"nombres\":\"Juan\",\"apellidos\":\"Pérez\",\"rut\":\"12345678\",\"dv\":\"9\",\"correo\":\"juan@example.com\",\"contrasena\":\"secret\",\"direccion\":\"Av. Siempre Viva 123\",\"comunaId\":13101}")))
     @ApiResponses({
         @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "Usuario registrado",
             content = @Content(mediaType = "application/json", schema = @Schema(implementation = RespuestaUsuario.class))),

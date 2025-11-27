@@ -46,12 +46,4 @@ public class ItemCarrito {
         return precioUnitario != null && cantidad != null ? precioUnitario.multiply(BigDecimal.valueOf(cantidad)) : BigDecimal.ZERO;
     }
 
-    /*
-     * Comentarios:
-     * - Representa un ítem dentro del carrito de compras.
-     * - La combinación (carrito_id, producto_id) es única para evitar duplicados.
-     * - `precioUnitario` guarda el precio unitario al momento de agregar el producto
-     *   para preservar históricos aunque el precio del producto cambie posteriormente.
-     * - `getSubtotal()` es un campo transitorio que calcula subtotal = precioUnitario * cantidad.
-     */
 }

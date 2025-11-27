@@ -43,53 +43,25 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
         if (userRepository.existsByRut(request.getRut())) {
             throw new PeticionInvalidaException("El RUT ya est\u00e1 registrado");
         }
-        // Si se envía rol ADMIN, registrar como Empleado ADMIN; en otro caso, como Cliente
+        // Registrar siempre como Cliente desde el flujo de cliente
         Usuario nuevo;
-        if (request.getRol() != null && request.getRol() == com.SebastianCornejo.Proyecto.Fullstack.entity.Role.ADMIN) {
-            if (request.getCelular() != null && repositorioEmpleado.existsByCelular(request.getCelular())) {
-                throw new PeticionInvalidaException("El número ya está registrado");
-            }
-            com.SebastianCornejo.Proyecto.Fullstack.entity.Empleado emp = new com.SebastianCornejo.Proyecto.Fullstack.entity.Empleado();
-            emp.setNombres(request.getNombres());
-            emp.setApellidos(request.getApellidos());
-            emp.setRut(request.getRut());
-            emp.setDv(request.getDv());
-            emp.setCorreo(request.getCorreo());
-            emp.setContrasena(passwordEncoder.encode(request.getContrasena()));
-            emp.setDireccion(request.getDireccion());
-            emp.setRol(com.SebastianCornejo.Proyecto.Fullstack.entity.Role.ADMIN);
-            if (request.getDepartamento() != null) emp.setDepartamento(request.getDepartamento());
-            if (request.getSueldo() != null) emp.setSueldo(request.getSueldo());
-            if (request.getFechaContratacion() != null) emp.setFechaContratacion(request.getFechaContratacion());
-            if (request.getFechaNacimiento() != null) emp.setFechaNacimiento(request.getFechaNacimiento());
-            if (request.getFechaSalida() != null) emp.setFechaSalida(request.getFechaSalida());
-            if (request.getGenero() != null) emp.setGenero(request.getGenero());
-            if (request.getNacionalidad() != null) emp.setNacionalidad(request.getNacionalidad());
-            if (request.getNumeroCuentaBancaria() != null) emp.setNumeroCuentaBancaria(request.getNumeroCuentaBancaria());
-            if (request.getTipoContrato() != null) emp.setTipoContrato(request.getTipoContrato());
-            if (request.getBanco() != null) emp.setBanco(request.getBanco());
-            if (request.getCelular() != null) emp.setCelular(request.getCelular());
-            if (request.getCuentaActiva() != null) emp.setCuentaActiva(request.getCuentaActiva());
-            nuevo = emp;
-        } else {
-            com.SebastianCornejo.Proyecto.Fullstack.entity.Cliente cli = new com.SebastianCornejo.Proyecto.Fullstack.entity.Cliente();
-            cli.setNombres(request.getNombres());
-            cli.setApellidos(request.getApellidos());
-            cli.setRut(request.getRut());
-            cli.setDv(request.getDv());
-            cli.setCorreo(request.getCorreo());
-            cli.setContrasena(passwordEncoder.encode(request.getContrasena()));
-            cli.setDireccion(request.getDireccion());
-            // Subtipo cliente: usar valores del request si vienen, sino defaults
-            cli.setTipoCliente(request.getTipoCliente() != null ? request.getTipoCliente() : com.SebastianCornejo.Proyecto.Fullstack.entity.TipoCliente.DETALLE);
-            cli.setPuntosFidelizacion(request.getPuntosFidelizacion() != null ? request.getPuntosFidelizacion() : 0);
-            if (request.getRecibirPromos() != null) cli.setRecibirPromos(request.getRecibirPromos());
-            if (request.getDireccionEntrega() != null) cli.setDireccionEntrega(request.getDireccionEntrega());
-            if (request.getPreferenciasComunicacion() != null) cli.setPreferenciasComunicacion(request.getPreferenciasComunicacion());
-            if (request.getLimiteCredito() != null) cli.setLimiteCredito(request.getLimiteCredito());
-            if (request.getFrecuenciaCompra() != null) cli.setFrecuenciaCompra(request.getFrecuenciaCompra());
-            nuevo = cli;
-        }
+        com.SebastianCornejo.Proyecto.Fullstack.entity.Cliente cli = new com.SebastianCornejo.Proyecto.Fullstack.entity.Cliente();
+        cli.setNombres(request.getNombres());
+        cli.setApellidos(request.getApellidos());
+        cli.setRut(request.getRut());
+        cli.setDv(request.getDv());
+        cli.setCorreo(request.getCorreo());
+        cli.setContrasena(passwordEncoder.encode(request.getContrasena()));
+        cli.setDireccion(request.getDireccion());
+        // Subtipo cliente: usar valores del request si vienen, sino defaults
+        cli.setTipoCliente(request.getTipoCliente() != null ? request.getTipoCliente() : com.SebastianCornejo.Proyecto.Fullstack.entity.TipoCliente.DETALLE);
+        cli.setPuntosFidelizacion(request.getPuntosFidelizacion() != null ? request.getPuntosFidelizacion() : 0);
+        if (request.getRecibirPromos() != null) cli.setRecibirPromos(request.getRecibirPromos());
+        if (request.getDireccionEntrega() != null) cli.setDireccionEntrega(request.getDireccionEntrega());
+        if (request.getPreferenciasComunicacion() != null) cli.setPreferenciasComunicacion(request.getPreferenciasComunicacion());
+        if (request.getLimiteCredito() != null) cli.setLimiteCredito(request.getLimiteCredito());
+        if (request.getFrecuenciaCompra() != null) cli.setFrecuenciaCompra(request.getFrecuenciaCompra());
+        nuevo = cli;
         // Asignar comuna (obligatoria por DTO)
         Comuna comuna = repositorioComuna.findById(Objects.requireNonNull(request.getComunaId()))
                 .orElseThrow(() -> new PeticionInvalidaException("Comuna no encontrada"));

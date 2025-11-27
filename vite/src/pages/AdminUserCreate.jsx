@@ -17,7 +17,6 @@ export default function AdminUserCreate() {
   const [correo, setCorreo] = useState('')
   const [contrasena, setContrasena] = useState('')
   const [direccion, setDireccion] = useState('')
-  const [rol, setRol] = useState('CLIENT')
   const [comunas, setComunas] = useState([])
   const [comunaId, setComunaId] = useState('')
   const [regiones, setRegiones] = useState([])
@@ -82,10 +81,6 @@ export default function AdminUserCreate() {
     return () => { ignore = true }
   }, [])
 
-  useEffect(() => {
-    if (tipoParam === 'empleado') setRol('ADMIN')
-    else if (tipoParam === 'cliente') setRol('CLIENT')
-  }, [tipoParam])
 
   // Cargar usuarios existentes para validar correo único (sólo ADMIN)
   useEffect(() => {
@@ -144,7 +139,6 @@ export default function AdminUserCreate() {
         contrasena: contrasena.trim(),
         direccion: direccion.trim(),
         comunaId: Number(comunaId),
-        rol,
       }
       const endpoint = tipoParam ? `/api/autenticacion/register?tipo=${encodeURIComponent(tipoParam)}` : '/api/autenticacion/register'
       const created = await api.post(endpoint, payload)
@@ -160,7 +154,7 @@ export default function AdminUserCreate() {
   setDireccion('')
   setComunaId('')
   setRegionId('')
-    setRol('CLIENT')
+    // rol eliminado
     } catch (err) {
       setError('Error creando usuario. Verifique el backend.')
       console.error('Create user error:', err)
@@ -269,13 +263,7 @@ export default function AdminUserCreate() {
                     <input type="password" className={`form-control ${contrasena ? (contrasenaValida ? 'is-valid' : 'is-invalid') : ''}`} value={contrasena} onChange={(e) => setContrasena(e.target.value)} />
                     {!contrasenaValida && contrasena && <div className="invalid-feedback">Requerido.</div>}
                   </div>
-                  <div className="col-md-6">
-                    <label className="form-label">Rol</label>
-                    <select className="form-select" value={rol} onChange={(e) => setRol(e.target.value)}>
-                      <option value="CLIENT">CLIENT</option>
-                      <option value="ADMIN">ADMIN</option>
-                    </select>
-                  </div>
+                  
                 </div>
 
                 <div className="mt-3">
