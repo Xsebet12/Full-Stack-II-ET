@@ -17,6 +17,8 @@ import Policies from './client/pages/Policies'
 import ProtectedRoute from './client/components/ProtectedRoute'
 import Account from './client/pages/Account'
 import Preferences from './client/pages/Preferences'
+import ForgotPassword from './client/pages/ForgotPassword'
+import ClientChangePassword from './client/pages/ChangePassword'
 import AdminLogin from './pages/AdminLogin'
 import AdminHome from './pages/AdminHome'
 import Youka from './pages/Youka'
@@ -38,14 +40,17 @@ export default function App() {
   const location = useLocation()
   const isAdmin = location.pathname === '/' || location.pathname.startsWith('/admin') || location.pathname.startsWith('/youkaADMIN') || location.pathname === '/homeadmin' || location.pathname === '/page'
   return (
-    <div>
+    <div className="app-root">
       {isAdmin ? null : <Navbar />}
+      <div className="app-content">
       <Routes>
         <Route path="/" element={<AdminLogin />} />
         <Route path="/home" element={<Home />} />
         <Route path="/catalogo" element={<Catalog />} />
         <Route path="/producto/:id" element={<ProductDetail />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/recuperar" element={<ForgotPassword />} />
+        <Route path="/cambiar-contrasena" element={<ProtectedRoute><ClientChangePassword /></ProtectedRoute>} />
         <Route path="/registrarCuenta" element={<Register />} />
         <Route path="/carrito" element={<ProtectedRoute><Cart /></ProtectedRoute>} />
         <Route path="/perfil" element={<ProtectedRoute><Account /></ProtectedRoute>} />
@@ -56,8 +61,11 @@ export default function App() {
         <Route path="/blog" element={<Blog />} />
         <Route path="/politicas" element={<Policies />} />
         <Route path="/admin" element={<AdminHome />} />
+        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/admin/change-password" element={<AdminChangePassword />} />
         <Route path="/homeadmin" element={<AdminHome />} />
         <Route path="/page" element={<AdminHome />} />
+        <Route path="/youkaADMIN/change-password" element={<AdminChangePassword />} />
         <Route path="/admin/products" element={<AdminProducts />} />
         <Route path="/admin/products/new" element={<AdminProductCreate />} />
         <Route path="/admin/providers" element={<AdminProviders />} />
@@ -76,7 +84,9 @@ export default function App() {
         <Route path="/admin/users/create/cliente" element={<AdminClienteCreate />} />
         <Route path="/admin/users/:id/edit" element={<AdminUserEdit />} />
       </Routes>
+      </div>
       {isAdmin ? null : <Footer />}
     </div>
   )
 }
+import AdminChangePassword from './pages/AdminChangePassword'

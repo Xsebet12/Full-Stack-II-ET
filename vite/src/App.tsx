@@ -19,6 +19,8 @@ import Contact from './client/pages/Contact'
 import Stores from './client/pages/Stores'
 import Blog from './client/pages/Blog'
 import Policies from './client/pages/Policies'
+import ForgotPassword from './client/pages/ForgotPassword'
+import ClientChangePassword from './client/pages/ChangePassword'
 import AdminHome from './admin/pages/AdminHome'
 import AdminLogin from './admin/pages/AdminLogin'
 import AdminProducts from './admin/pages/AdminProducts'
@@ -39,14 +41,17 @@ export default function App(){
   const location = useLocation()
   const isAdmin = location.pathname === '/' || location.pathname.startsWith('/admin') || location.pathname.startsWith('/youkaADMIN') || location.pathname === '/homeadmin' || location.pathname === '/page'
   return (
-    <div>
+    <div className="app-root">
       {isAdmin ? null : <Navbar />}
+      <div className="app-content">
       <Routes>
         <Route path="/" element={<AdminLogin />} />
         <Route path="/home" element={<Home />} />
         <Route path="/catalogo" element={<Catalog />} />
         <Route path="/producto/:id" element={<ProductDetail />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/recuperar" element={<ForgotPassword />} />
+        <Route path="/cambiar-contrasena" element={<ProtectedRoute><ClientChangePassword /></ProtectedRoute>} />
         <Route path="/registrarCuenta" element={<Register />} />
         <Route path="/carrito" element={<ProtectedRoute><Cart /></ProtectedRoute>} />
         <Route path="/perfil" element={<ProtectedRoute><Account /></ProtectedRoute>} />
@@ -69,6 +74,7 @@ export default function App(){
         <Route path="/admin/users/create/cliente" element={<AdminClienteCreate />} />
         <Route path="/admin/users/:id/edit" element={<AdminUserEdit />} />
       </Routes>
+      </div>
       {isAdmin ? null : <Footer />}
     </div>
   )

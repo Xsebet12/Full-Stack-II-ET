@@ -50,7 +50,7 @@ export default function AdminUsers() {
         if (!ignore) setUsers(Array.isArray(data) ? data : [])
       } catch (err) {
         const detalle = err?.body?.error || ''
-        if (!ignore) setError(`No se pudo cargar usuarios. ${detalle ? detalle : 'Verifique el backend y rol.'}`)
+        if (!ignore) setError(`No se pudo cargar usuarios. ${detalle ? detalle : 'Verifique permisos ADMIN y el backend.'}`)
         console.error('Error cargando usuarios:', err)
       } finally {
         if (!ignore) setLoading(false)

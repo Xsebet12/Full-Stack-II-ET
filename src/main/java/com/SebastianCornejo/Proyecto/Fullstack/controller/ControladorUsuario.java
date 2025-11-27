@@ -39,7 +39,7 @@ public class ControladorUsuario {
 
     @GetMapping
     @PreAuthorize("hasRole('ADMIN')")
-    @Operation(summary = "Listar usuarios", description = "Listado de usuarios con filtro opcional ?habilitado=true|false (solo ADMIN)")
+    @Operation(summary = "Listar usuarios", description = "Listado de usuarios con filtros opcionales ?habilitado=true|false y ?tipo=empleados|clientes (solo ADMIN)")
     @ApiResponses({
         @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "Lista de usuarios",
             content = @Content(mediaType = "application/json", schema = @Schema(implementation = RespuestaUsuario.class))),
@@ -47,11 +47,7 @@ public class ControladorUsuario {
     })
     public List<RespuestaUsuario> listar(@RequestParam(value = "habilitado", required = false) Boolean habilitado,
                                          @RequestParam(value = "tipo", required = false) String tipo) {
-        List<Usuario> all = repositorioUsuario.findAll();
-        if (habilitado != null) {
-            all = all.stream().filter(u -> habilitado.equals(u.getHabilitado())).collect(java.util.stream.Collectors.toList());
-        }
-        return all.stream().map(this::mapUsuario).collect(java.util.stream.Collectors.toList());
+        return servicioUsuario.listar(habilitado, tipo);
     }
 
     @GetMapping("/me")

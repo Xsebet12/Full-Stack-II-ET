@@ -154,7 +154,6 @@ export default function AdminUserCreate() {
   setDireccion('')
   setComunaId('')
   setRegionId('')
-    // rol eliminado
     } catch (err) {
       setError('Error creando usuario. Verifique el backend.')
       console.error('Create user error:', err)
@@ -185,7 +184,7 @@ export default function AdminUserCreate() {
                   <Link to="/admin/users/create/cliente" className="btn btn-outline-secondary">Cliente</Link>
                 </div>
               </div>
-              <p className="text-muted">Ingrese los datos del usuario y seleccione el rol.</p>
+              <p className="text-muted">Ingrese los datos del usuario y seleccione el tipo.</p>
 
               {error && <div className="alert alert-danger" role="alert">{error}</div>}
       {message && <div className="alert alert-success" role="alert">{message}</div>}

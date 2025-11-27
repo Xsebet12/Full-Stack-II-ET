@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export default function Footer(){
   return (
-    <footer className="bg-dark text-white py-4 mt-auto" style={{marginTop:80}}>
+    <footer className="bg-dark text-white py-4 mt-auto">
       <div className="container d-flex flex-column flex-md-row justify-content-between align-items-center">
         <div>
           <h5>YOUKA</h5>

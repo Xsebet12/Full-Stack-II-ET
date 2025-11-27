@@ -19,10 +19,9 @@ export function authHeaders(): Record<string, string> {
   if (t) h.Authorization = `Bearer ${t}`
   return h
 }
-function buildHeaders(extra: Record<string, string> = {}): HeadersInit {
-  const h = new Headers()
-  Object.entries(extra).forEach(([k, v]) => h.append(k, v))
-  const t = getAuthToken(); if (t) h.append('Authorization', `Bearer ${t}`)
+function buildHeaders(extra: Record<string, string> = {}): Record<string, string> {
+  const h: Record<string, string> = { ...extra }
+  const t = getAuthToken(); if (t) h['Authorization'] = `Bearer ${t}`
   return h
 }
 export async function getProductos(q?:string){

@@ -21,7 +21,7 @@ export default function AdminUserEdit() {
   const [dv, setDv] = useState('')
   const [correo, setCorreo] = useState('')
   const [direccion, setDireccion] = useState('')
-  const [rol, setRol] = useState('CLIENT')
+  const [rol, setRol] = useState('')
   const [enabled, setEnabled] = useState(true)
   const [comunas, setComunas] = useState([])
   const [comunaId, setComunaId] = useState('')
@@ -109,7 +109,7 @@ export default function AdminUserEdit() {
           setDv(data?.dv ?? '')
           setCorreo(data?.correo ?? '')
           setDireccion(data?.direccion ?? '')
-          setRol(data?.rol ?? 'CLIENT')
+          setRol(data?.rol ?? '')
           setEnabled(Boolean(data?.enabled))
           setComunas(Array.isArray(comunasData) ? comunasData : [])
           setRegiones(Array.isArray(regionesData) ? regionesData : [])
@@ -194,7 +194,7 @@ export default function AdminUserEdit() {
         dv,
         correo,
         direccion,
-        rol,
+        ...(isEmpleado ? { rol } : {}),
         enabled,
         comunaId: Number(comunaId),
         tipoCliente: tipoCliente || null,
@@ -225,7 +225,7 @@ export default function AdminUserEdit() {
       setDv(updated?.dv ?? '')
       setCorreo(updated?.correo ?? '')
       setDireccion(updated?.direccion ?? '')
-      setRol(updated?.rol ?? 'CLIENT')
+      setRol(updated?.rol ?? '')
       setEnabled(Boolean(updated?.enabled))
       setRegionId(updated?.regionId ? String(updated.regionId) : '')
       setComunaId(updated?.comunaId ? String(updated.comunaId) : '')
@@ -373,12 +373,14 @@ export default function AdminUserEdit() {
                         <label className="form-label">Tipo Usuario</label>
                         <input type="text" className="form-control" value={isEmpleado ? 'EMPLEADO' : 'CLIENTE'} disabled />
                       </div>
-                      <div className="col-md-4">
-                        <label className="form-label">Rol</label>
-                        <select className="form-select" value={rol} onChange={(e) => setRol(e.target.value)} disabled={!enabled || saving || !isEmpleado}>
-                          <option value="ADMIN">ADMIN</option>
-                        </select>
-                      </div>
+                      {isEmpleado && (
+                        <div className="col-md-4">
+                          <label className="form-label">Rol</label>
+                          <select className="form-select" value={rol} onChange={(e) => setRol(e.target.value)} disabled={!enabled || saving}>
+                            <option value="ADMIN">ADMIN</option>
+                          </select>
+                        </div>
+                      )}
                       <div className="col-md-4 d-flex align-items-center">
                         <div className="form-check mt-4">
                           <input className="form-check-input" type="checkbox" id="enabledCheck" checked={enabled} onChange={(e) => setEnabled(e.target.checked)} disabled={!enabled || saving} />

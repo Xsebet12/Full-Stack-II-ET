@@ -18,10 +18,7 @@ export default function AdminLogin() {
             if (!u) return false
             const values = []
             if (typeof u.rol === 'string') values.push(u.rol)
-            if (typeof u.role === 'string') values.push(u.role)
-            if (Array.isArray(u.roles)) values.push(...u.roles.map(String))
             if (Array.isArray(u.authorities)) values.push(...u.authorities.map(a => typeof a === 'string' ? a : String(a?.authority ?? a)))
-            if (Array.isArray(u.permisos)) values.push(...u.permisos.map(String))
             const normalized = values.map(v => v.trim().toUpperCase())
             return normalized.some(v => v.includes('ADMIN'))
           }

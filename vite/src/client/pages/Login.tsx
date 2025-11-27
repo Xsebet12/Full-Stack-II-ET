@@ -41,7 +41,7 @@ export default function Login(){
                 <input className="form-check-input" type="checkbox" id="remember-me" />
                 <label className="form-check-label" htmlFor="remember-me">Guardar inicio de sesión</label>
               </div>
-              <a href="/admin/change-password">¿Olvidaste tu contraseña?</a>
+              <a href="/recuperar">¿Olvidaste tu contraseña?</a>
             </div>
             <button type="submit" className="btn btn-youka w-100">Iniciar sesión</button>
           </form>

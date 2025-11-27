@@ -12,7 +12,7 @@ export default function Navbar(){
   const [q,setQ]=useState('')
   const navigate=useNavigate()
   return (
-    <nav className="navbar navbar-expand-md navbar-light fixed-top navbar-youka">
+    <nav className="navbar navbar-expand-md navbar-light sticky-top navbar-youka">
       <div className="container-fluid">
         <Link className="navbar-brand d-flex align-items-center" to="/home">
           <img src="/img/Logo.png" alt="YOUKA" style={logoStyle} onError={(e)=>{(e.currentTarget as HTMLImageElement).src='/vite.svg'}} loading="eager" />

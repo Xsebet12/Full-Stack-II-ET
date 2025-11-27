@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState, useCallback } from 'react'
 import api from '../lib/api'
+import { getAuthToken } from '../client/api/client'
 
 export const AuthContext = createContext({
   user: null,
@@ -11,7 +12,7 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null)
 
   const loadUser = useCallback(async () => {
-    const token = localStorage.getItem('authToken')
+    const token = getAuthToken()
     if (!token) return
     try {
   console.debug('AuthProvider: loading profile with existing token')
@@ -21,7 +22,8 @@ export function AuthProvider({ children }) {
     } catch (err) {
       // token invalid or network error: clear it
       console.error('fetch profile failed', err)
-      localStorage.removeItem('authToken')
+      try{ localStorage.removeItem('authToken') }catch{}
+      try{ sessionStorage.removeItem('authToken') }catch{}
       setUser(null)
     }
   }, [])
