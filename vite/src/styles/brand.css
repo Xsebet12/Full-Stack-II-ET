@@ -1,0 +1,34 @@
+.-bg-ocilak { background-color: #FF8C42 !important; }
+.bg-ocilak { background-color: #FF8C42 !important; }
+.btn-ocilak { background-color: #FF8C42; border-color: #FF8C42; color: #FFFFFF; }
+.btn-ocilak:hover, .btn-ocilak:focus { filter: brightness(0.95); color: #FFFFFF; }
+.navbar.bg-ocilak .navbar-brand, .navbar.bg-ocilak .nav-link { color: #FFFFFF; }
+.navbar.bg-ocilak .nav-link:hover { color: #FFFFFF; opacity: 0.85; }
+.bg-youka { background-color: #C1D59E !important; }
+.text-youka { color: #779B48 !important; }
+.youka-accent { color: #734F33 !important; }
+.youka-ribbon { background-color: #734F33; color: #FFFFFF; }
+.btn-youka { background-color: #779B48; border-color: #779B48; color: #FFFFFF; }
+.btn-youka:hover { filter: brightness(0.95); color: #FFFFFF; }
+.btn-youka-outline { background-color: #FFFFFF; border: 1px solid #779B48; color: #779B48; }
+.bg-jca2-dark { background-color: #2A4880; color: #FFFFFF; }
+.jca2-gradient { background: linear-gradient(90deg, #2A4880 0%, #8A3D8A 33%, #E04B2C 66%, #F6C83E 100%); }
+.text-jca2-black { color: #000000; }
+.badge-jca2 { background-color: #2A4880; color: #FFFFFF; }
+.bg-castell { background-color: #F8F7F2; }
+.text-castell-black { color: #000000; }
+.castell-accent { border-left: 4px solid #F68B3E; padding-left: 12px; }
+
+:root {
+  --youka-light: #C1D59E;
+  --youka-olive: #779B48;
+  --youka-brown: #734F33;
+}
+
+.navbar-youka {
+  background-color: var(--youka-light);
+  border-bottom: 2px solid var(--youka-brown);
+}
+.navbar-youka .nav-link { color: var(--youka-brown); }
+.navbar-youka .nav-link:hover { opacity: 0.8; }
+.navbar-youka .navbar-brand { color: var(--youka-olive); }
