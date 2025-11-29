@@ -2,6 +2,8 @@ package com.SebastianCornejo.Proyecto.Fullstack.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import java.time.Instant;
 
 @Data
@@ -41,6 +43,11 @@ public class Usuario {
 
     @Column(name = "direccion", nullable = false)
     private String direccion;
+
+    @Size(max = 15)
+    @Pattern(regexp = "^[\\d\\s()+-]{7,15}$", message = "Formato inválido: use dígitos, espacios, +, -, ()")
+    @Column(name = "telefono", length = 15)
+    private String telefono;
 
     @Column(nullable = false)
     @Builder.Default

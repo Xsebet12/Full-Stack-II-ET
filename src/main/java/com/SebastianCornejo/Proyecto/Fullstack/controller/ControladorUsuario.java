@@ -64,7 +64,7 @@ public class ControladorUsuario {
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "Obtener usuario por id", description = "Devuelve un usuario (sólo ADMIN)")
-    public RespuestaUsuario obtener(@PathVariable Long id) {
+    public RespuestaUsuario obtener(@PathVariable("id") Long id) {
         return servicioUsuario.findById(id);
     }
 
@@ -87,14 +87,14 @@ public class ControladorUsuario {
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "Actualizar usuario", description = "Actualiza datos del usuario (sólo ADMIN)")
-    public RespuestaUsuario actualizar(@PathVariable Long id, @RequestBody SolicitudActualizacionUsuario request) {
+    public RespuestaUsuario actualizar(@PathVariable("id") Long id, @RequestBody SolicitudActualizacionUsuario request) {
         return servicioUsuario.update(id, request);
     }
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "Deshabilitar usuario", description = "Deshabilita (soft delete) al usuario (sólo ADMIN)")
-    public ResponseEntity<Void> deshabilitar(@PathVariable Long id) {
+    public ResponseEntity<Void> deshabilitar(@PathVariable("id") Long id) {
         servicioUsuario.disable(id);
         return ResponseEntity.noContent().build();
     }
@@ -102,11 +102,20 @@ public class ControladorUsuario {
     @PatchMapping("/{id}/estado")
     @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "Cambiar estado habilitado", description = "Activa/Desactiva el usuario (sólo ADMIN)")
-    public ResponseEntity<RespuestaUsuario> cambiarEstado(@PathVariable Long id,
+    public ResponseEntity<RespuestaUsuario> cambiarEstado(@PathVariable("id") Long id,
             @org.springframework.web.bind.annotation.RequestBody(required = false) Boolean habilitadoBody,
             @RequestParam(value = "habilitado", required = false) Boolean habilitadoParam) {
         Boolean habilitado = (habilitadoBody != null) ? habilitadoBody : habilitadoParam;
         RespuestaUsuario updated = servicioUsuario.setHabilitado(id, habilitado);
+        return ResponseEntity.ok(updated);
+    }
+
+    @PutMapping("/me")
+    @Operation(summary = "Actualizar perfil", description = "Actualiza datos del usuario autenticado")
+    public ResponseEntity<RespuestaUsuario> actualizarMiPerfil(@AuthenticationPrincipal UserDetails principal,
+                                                               @Valid @RequestBody SolicitudActualizacionUsuario request) {
+        Usuario user = repositorioUsuario.findByCorreo(principal.getUsername()).orElseThrow();
+        RespuestaUsuario updated = servicioUsuario.update(user.getId(), request);
         return ResponseEntity.ok(updated);
     }
 
@@ -126,6 +135,7 @@ public class ControladorUsuario {
                 .rut(saved.getRut())
                 .dv(saved.getDv())
                 .correo(saved.getCorreo())
+                .telefono(saved.getTelefono())
                 .direccion(saved.getDireccion())
                 .comuna(saved.getComuna() != null ? saved.getComuna().getNomComuna() : null)
                 .region(saved.getComuna() != null && saved.getComuna().getRegion() != null ? saved.getComuna().getRegion().getNomRegion() : null)

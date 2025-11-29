@@ -45,6 +45,7 @@ export default function Navbar(){
                 { user || getAuthToken() ? (
                   <>
                     <li><Link className="dropdown-item" to="/perfil">Mi cuenta</Link></li>
+                    <li><Link className="dropdown-item" to="/perfil/editar">Editar perfil</Link></li>
                     <li><Link className="dropdown-item" to="/preferencias">Preferencias</Link></li>
                     <li><hr className="dropdown-divider" /></li>
                     <li><button className="dropdown-item" onClick={()=>{ try{ localStorage.removeItem('authToken'); localStorage.removeItem('authUser'); localStorage.removeItem('authPrefs'); }catch{} try{ sessionStorage.removeItem('authToken'); sessionStorage.removeItem('authUser'); sessionStorage.removeItem('authPrefs'); }catch{} try{ document.cookie='authToken=; Max-Age=0; Path=/; SameSite=Lax' }catch{} window.location.href='/home' }}>Cerrar sesión</button></li>

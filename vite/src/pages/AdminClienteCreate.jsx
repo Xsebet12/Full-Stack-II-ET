@@ -18,6 +18,7 @@ export default function AdminClienteCreate() {
   const [comunaId, setComunaId] = useState('')
   const [regiones, setRegiones] = useState([])
   const [regionId, setRegionId] = useState('')
+  const [telefono, setTelefono] = useState('')
   const [tipoCliente, setTipoCliente] = useState('')
   const [puntosFidelizacion, setPuntosFidelizacion] = useState('')
   const [recibirPromos, setRecibirPromos] = useState(false)
@@ -68,6 +69,12 @@ export default function AdminClienteCreate() {
   }, [dv])
 
   const direccionValida = useMemo(() => direccion.trim().length > 0, [direccion])
+  const telefonoValido = useMemo(() => {
+    const t = (telefono || '').trim()
+    if (!t) return true
+    const re = /^[\d\s()+-]{7,15}$/
+    return re.test(t)
+  }, [telefono])
   const nombresValidos = useMemo(() => nombres.trim().length > 0, [nombres])
   const apellidosValidos = useMemo(() => apellidos.trim().length > 0, [apellidos])
   const contrasenaValida = useMemo(() => contrasena.trim().length > 0, [contrasena])
@@ -174,6 +181,7 @@ export default function AdminClienteCreate() {
     if (!contrasenaValida) return 'Contraseña es requerida'
     if (!direccionValida) return 'Dirección es requerida'
     if (!comunaValida) return 'Debe seleccionar una comuna'
+    if (telefono && !telefonoValido) return 'Teléfono con formato inválido'
     return ''
   }
 
@@ -197,6 +205,7 @@ export default function AdminClienteCreate() {
         contrasena: contrasena.trim(),
         direccion: direccion.trim(),
         comunaId: Number(comunaId),
+        telefono: telefono ? telefono.trim() : undefined,
         tipoCliente: tipoCliente || undefined,
         puntosFidelizacion: puntosFidelizacion ? Number(puntosFidelizacion) : undefined,
         recibirPromos,
@@ -217,6 +226,7 @@ export default function AdminClienteCreate() {
       setDireccion('')
       setComunaId('')
       setRegionId('')
+      setTelefono('')
       setTipoCliente('')
       setPuntosFidelizacion('')
       setRecibirPromos(false)
@@ -225,7 +235,8 @@ export default function AdminClienteCreate() {
       setLimiteCredito('')
       setFrecuenciaCompra('')
     } catch (err) {
-      setError('Error creando cliente. Verifique el backend.')
+      const detail = (err && err.message) ? String(err.message) : ''
+      setError(detail || 'Error creando cliente. Verifique el backend.')
       console.error('Create cliente error:', err)
     } finally {
       setCreating(false)
@@ -302,6 +313,11 @@ export default function AdminClienteCreate() {
                     <input type="email" className={`form-control ${correo ? ((emailValido && !emailTomado && !remoteEmailTaken) ? 'is-valid' : 'is-invalid') : ''}`} value={correo} onChange={(e) => setCorreo(e.target.value)} placeholder="usuario@gmail.com o usuario@duocuc.cl" />
                     {!emailValido && correo && <div className="invalid-feedback">Solo se permiten dominios gmail.com o duocuc.cl.</div>}
                     {emailValido && (emailTomado || remoteEmailTaken) && <div className="invalid-feedback d-block">Correo ya registrado.</div>}
+                  </div>
+                  <div className="col-md-6">
+                    <label className="form-label">Teléfono (opcional)</label>
+                    <input type="text" className={`form-control ${telefono ? (telefonoValido ? 'is-valid' : 'is-invalid') : ''}`} value={telefono} onChange={(e) => setTelefono(e.target.value)} />
+                    {!telefonoValido && telefono && <div className="invalid-feedback">Formato permitido: dígitos, espacios, +, -, ().</div>}
                   </div>
                   <div className="col-md-6">
                     <label className="form-label">Dirección</label>

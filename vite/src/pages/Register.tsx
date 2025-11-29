@@ -16,6 +16,7 @@ export default function Register(){
     const rut=(document.getElementById('rut') as HTMLInputElement).value.trim()
     const dv=(document.getElementById('dv') as HTMLInputElement).value.trim()
     const correo=(document.getElementById('correo') as HTMLInputElement).value.trim()
+    const telefono=(document.getElementById('telefono') as HTMLInputElement).value.trim()
     const contrasena=(document.getElementById('contrasena') as HTMLInputElement).value
     const confirmar=(document.getElementById('confirmar') as HTMLInputElement).value
     const direccion=(document.getElementById('direccion') as HTMLInputElement).value.trim()
@@ -23,9 +24,21 @@ export default function Register(){
     const errores=document.getElementById('errores') as HTMLDivElement
     errores.textContent=''
     if(contrasena!==confirmar){ errores.textContent='Las contraseñas no coinciden'; return }
-    const resp=await register({nombres,apellidos,rut,dv,correo,contrasena,direccion,comunaId:Number(comunaSel)})
-    if(!resp||!resp.id){ errores.textContent='Error al registrar'; return }
-    window.location.href='/login'
+    if(telefono){
+      const re=/^[\d\s()+-]{7,15}$/
+      if(!re.test(telefono)){ errores.textContent='Teléfono con formato inválido'; return }
+    }
+    const body:any={nombres,apellidos,rut,dv,correo,contrasena,direccion,comunaId:Number(comunaSel)}
+    if(telefono) body.telefono=telefono
+    try{
+      const resp=await register(body)
+      if(!resp||!resp.id){ errores.textContent='Error al registrar'; return }
+      window.location.href='/login'
+    }catch(err:any){
+      const b = err?.message || ''
+      errores.textContent = b || 'No se pudo registrar'
+      return
+    }
   }
   const comunasFiltradas=comunas.filter(c=>String(c.region?.idRegion)===String(regionId))
   return (

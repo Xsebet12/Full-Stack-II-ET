@@ -16,6 +16,7 @@ import Blog from './client/pages/Blog'
 import Policies from './client/pages/Policies'
 import ProtectedRoute from './client/components/ProtectedRoute'
 import Account from './client/pages/Account'
+import EditProfile from './client/pages/EditProfile'
 import Preferences from './client/pages/Preferences'
 import ForgotPassword from './client/pages/ForgotPassword'
 import ClientChangePassword from './client/pages/ChangePassword'
@@ -54,6 +55,7 @@ export default function App() {
         <Route path="/registrarCuenta" element={<Register />} />
         <Route path="/carrito" element={<ProtectedRoute><Cart /></ProtectedRoute>} />
         <Route path="/perfil" element={<ProtectedRoute><Account /></ProtectedRoute>} />
+        <Route path="/perfil/editar" element={<ProtectedRoute><EditProfile /></ProtectedRoute>} />
         <Route path="/preferencias" element={<ProtectedRoute><Preferences /></ProtectedRoute>} />
         <Route path="/sobre-nosotros" element={<About />} />
         <Route path="/contacto" element={<Contact />} />

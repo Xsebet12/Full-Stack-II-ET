@@ -2,6 +2,7 @@ package com.SebastianCornejo.Proyecto.Fullstack.controller;
 
 import com.SebastianCornejo.Proyecto.Fullstack.entity.Role;
 import com.SebastianCornejo.Proyecto.Fullstack.entity.Usuario;
+import com.SebastianCornejo.Proyecto.Fullstack.dto.RespuestaUsuario;
 import com.SebastianCornejo.Proyecto.Fullstack.repository.RepositorioUsuario;
 import com.SebastianCornejo.Proyecto.Fullstack.service.ServicioUsuario;
 import org.junit.jupiter.api.DisplayName;
@@ -37,6 +38,9 @@ class UserControllerWebMvcTest {
     @Autowired
     private RepositorioUsuario repositorioUsuario;
 
+    @Autowired
+    private ServicioUsuario servicioUsuario;
+
     // jwtAuthenticationFilter no es usado en este test
 
     @TestConfiguration
@@ -56,30 +60,32 @@ class UserControllerWebMvcTest {
     @DisplayName("GET /api/usuarios devuelve lista de usuarios")
     @WithMockUser(username = "admin@example.com", roles = {"ADMIN"})
     void testList() throws Exception {
-        Usuario u = Usuario.builder()
+        RespuestaUsuario dto = RespuestaUsuario.builder()
                 .id(1L)
                 .nombres("Juan")
                 .apellidos("Pérez")
                 .rut("12345678")
                 .dv("9")
                 .correo("juan@example.com")
+                .telefono("+56 9 1234 5678")
                 .rol(Role.ADMIN)
                 .direccion("Calle 1")
-                .habilitado(true)
-                .creadoEn(Instant.now())
+                .enabled(true)
+                .createdAt(Instant.now())
                 .build();
-    Mockito.when(repositorioUsuario.findAll()).thenReturn(List.of(u));
+        Mockito.when(servicioUsuario.listar(null, null)).thenReturn(List.of(dto));
 
-    mockMvc.perform(get("/api/usuarios"))
+        mockMvc.perform(get("/api/usuarios"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", Objects.requireNonNull(hasSize(1))))
                 .andExpect(jsonPath("$[0].correo", Objects.requireNonNull(is("juan@example.com"))))
+                .andExpect(jsonPath("$[0].telefono", Objects.requireNonNull(is("+56 9 1234 5678"))))
                 .andExpect(jsonPath("$[0].rol", Objects.requireNonNull(is("ADMIN"))));
     }
 
     @Test
     @DisplayName("GET /api/usuarios/me devuelve perfil del usuario")
-    @WithMockUser(username = "client@example.com", roles = {"CLIENT"})
+    @WithMockUser(username = "client@example.com")
     void testMe() throws Exception {
         Usuario u = Usuario.builder()
                 .id(1L)
@@ -88,7 +94,7 @@ class UserControllerWebMvcTest {
                 .rut("11111111")
                 .dv("1")
                 .correo("client@example.com")
-                .rol(Role.CLIENT)
+                .telefono("+56 9 0000 0000")
                 .direccion("Calle 2")
                 .habilitado(true)
                 .creadoEn(Instant.now())
@@ -98,6 +104,6 @@ class UserControllerWebMvcTest {
     mockMvc.perform(get("/api/usuarios/me"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.correo", Objects.requireNonNull(is("client@example.com"))))
-                .andExpect(jsonPath("$.rol", Objects.requireNonNull(is("CLIENT"))));
+                .andExpect(jsonPath("$.telefono", Objects.requireNonNull(is("+56 9 0000 0000"))));
     }
 }

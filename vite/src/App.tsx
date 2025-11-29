@@ -6,6 +6,7 @@ import Header from './components/Header.jsx'
 import Footer from './client/components/Footer'
 import ProtectedRoute from './client/components/ProtectedRoute'
 import Account from './client/pages/Account'
+import EditProfile from './client/pages/EditProfile'
 import Preferences from './client/pages/Preferences'
 import Home from './client/pages/Home'
 import Catalog from './client/pages/Catalog'
@@ -55,6 +56,7 @@ export default function App(){
         <Route path="/registrarCuenta" element={<Register />} />
         <Route path="/carrito" element={<ProtectedRoute><Cart /></ProtectedRoute>} />
         <Route path="/perfil" element={<ProtectedRoute><Account /></ProtectedRoute>} />
+        <Route path="/perfil/editar" element={<ProtectedRoute><EditProfile /></ProtectedRoute>} />
         <Route path="/preferencias" element={<ProtectedRoute><Preferences /></ProtectedRoute>} />
         <Route path="/sobre-nosotros" element={<About />} />
         <Route path="/contacto" element={<Contact />} />

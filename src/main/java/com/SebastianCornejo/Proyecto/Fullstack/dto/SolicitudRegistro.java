@@ -47,6 +47,11 @@ public class SolicitudRegistro {
     @Schema(description = "Dirección postal", example = "Av. Siempre Viva 123")
     private String direccion;
 
+    @Size(max = 15, message = "El teléfono debe tener máximo 15 caracteres")
+    @Pattern(regexp = "^[\\d\\s()+-]{7,15}$", message = "Formato permitido: dígitos, espacios, +, -, ()")
+    @Schema(description = "Teléfono de contacto (opcional)", example = "+56 9 1234 5678")
+    private String telefono;
+
     @NotNull(message = "La comuna (id) es obligatoria")
     @Schema(description = "ID de la comuna seleccionada", example = "1")
     private Integer comunaId; // id de la comuna seleccionada

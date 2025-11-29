@@ -57,7 +57,18 @@ async function handleResponse(res) {
   } catch (e) {
     body = null
   }
-  const err = new Error(`HTTP ${res.status}`)
+  let msg = `HTTP ${res.status}`
+  if (body && typeof body === 'object') {
+    if (body.errors && typeof body.errors === 'object') {
+      const parts = Object.entries(body.errors).map(([f,m]) => `${String(f)}: ${String(m)}`)
+      if (parts.length) msg = parts.join('; ')
+    } else if (body.error || body.message) {
+      msg = body.error || body.message || msg
+    }
+  } else if (typeof body === 'string' && body.trim()) {
+    msg = body.trim()
+  }
+  const err = new Error(msg)
   err.status = res.status
   err.body = body
   throw err

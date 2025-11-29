@@ -176,6 +176,7 @@ export default function AdminUsers() {
                             <th>Nombres</th>
                             <th>Apellidos</th>
                             <th>Correo</th>
+                            <th>Celular</th>
                             <th>Rol</th>
                             <th>RUT</th>
                             <th>Habilitado</th>
@@ -187,6 +188,7 @@ export default function AdminUsers() {
                             <th>Nombres</th>
                             <th>Apellidos</th>
                             <th>Correo</th>
+                            <th>Teléfono</th>
                             <th>Tipo Cliente</th>
                             <th>Puntos</th>
                             <th>Promos</th>
@@ -204,7 +206,7 @@ export default function AdminUsers() {
                       <tbody>
                         {pagedUsers.length === 0 ? (
                           <tr>
-                            <td colSpan={vista==='empleados'?8:14} className="text-center text-muted">No hay usuarios</td>
+                            <td colSpan={vista==='empleados'?9:15} className="text-center text-muted">No hay usuarios</td>
                           </tr>
                         ) : (
                           pagedUsers.map((u) => (
@@ -214,6 +216,7 @@ export default function AdminUsers() {
                               <td>{u.correo ?? '-'}</td>
                               {vista === 'empleados' ? (
                                 <>
+                                  <td>{u.celular ?? '-'}</td>
                                   <td>{u.rol ?? '-'}</td>
                                   <td>{u.rut ? `${u.rut}-${u.dv ?? ''}` : '-'}</td>
                                   <td>{u.enabled ? 'Sí' : 'No'}</td>
@@ -221,6 +224,7 @@ export default function AdminUsers() {
                                 </>
                               ) : (
                                 <>
+                                  <td>{u.telefono ?? '-'}</td>
                                   <td>{u.tipoCliente ?? '-'}</td>
                                   <td>{u.puntosFidelizacion ?? '-'}</td>
                                   <td>{u.recibirPromos === true ? 'Sí' : (u.recibirPromos === false ? 'No' : '-')}</td>

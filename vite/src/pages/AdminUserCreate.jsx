@@ -21,6 +21,7 @@ export default function AdminUserCreate() {
   const [comunaId, setComunaId] = useState('')
   const [regiones, setRegiones] = useState([])
   const [regionId, setRegionId] = useState('')
+  const [telefono, setTelefono] = useState('')
 
   const [creating, setCreating] = useState(false)
   const [error, setError] = useState('')
@@ -55,6 +56,12 @@ export default function AdminUserCreate() {
   }, [dv])
 
   const direccionValida = useMemo(() => direccion.trim().length > 0, [direccion])
+  const telefonoValido = useMemo(() => {
+    const t = (telefono || '').trim()
+    if (!t) return true
+    const re = /^[\d\s()+-]{7,15}$/
+    return re.test(t)
+  }, [telefono])
   const nombresValidos = useMemo(() => nombres.trim().length > 0, [nombres])
   const apellidosValidos = useMemo(() => apellidos.trim().length > 0, [apellidos])
   const contrasenaValida = useMemo(() => contrasena.trim().length > 0, [contrasena])
@@ -117,6 +124,7 @@ export default function AdminUserCreate() {
     if (!contrasenaValida) return 'Contraseña es requerida'
     if (!direccionValida) return 'Dirección es requerida'
     if (!comunaValida) return 'Debe seleccionar una comuna'
+    if (telefono && !telefonoValido) return 'Teléfono con formato inválido'
     return ''
   }
 
@@ -139,6 +147,7 @@ export default function AdminUserCreate() {
         contrasena: contrasena.trim(),
         direccion: direccion.trim(),
         comunaId: Number(comunaId),
+        telefono: telefono ? telefono.trim() : undefined,
       }
       const endpoint = tipoParam ? `/api/autenticacion/register?tipo=${encodeURIComponent(tipoParam)}` : '/api/autenticacion/register'
       const created = await api.post(endpoint, payload)
@@ -154,8 +163,10 @@ export default function AdminUserCreate() {
   setDireccion('')
   setComunaId('')
   setRegionId('')
+  setTelefono('')
     } catch (err) {
-      setError('Error creando usuario. Verifique el backend.')
+      const detail = (err && err.message) ? String(err.message) : ''
+      setError(detail || 'Error creando usuario. Verifique el backend.')
       console.error('Create user error:', err)
     } finally {
       setCreating(false)
@@ -236,6 +247,11 @@ export default function AdminUserCreate() {
                     <label className="form-label">Dirección</label>
                     <input type="text" className={`form-control ${direccion ? (direccionValida ? 'is-valid' : 'is-invalid') : ''}`} value={direccion} onChange={(e) => setDireccion(e.target.value)} />
                     {!direccionValida && direccion && <div className="invalid-feedback">Requerido.</div>}
+                  </div>
+                  <div className="col-md-6">
+                    <label className="form-label">Teléfono (opcional)</label>
+                    <input type="text" className={`form-control ${telefono ? (telefonoValido ? 'is-valid' : 'is-invalid') : ''}`} value={telefono} onChange={(e) => setTelefono(e.target.value)} />
+                    {!telefonoValido && telefono && <div className="invalid-feedback">Formato permitido: dígitos, espacios, +, -, ().</div>}
                   </div>
                   <div className="col-md-6">
                     <label className="form-label">Región</label>

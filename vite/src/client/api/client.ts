@@ -54,7 +54,20 @@ export async function register(body:any){
   })
   if(!r.ok){
     let msg = `No se pudo registrar (HTTP ${r.status})`
-    try{ const j = await r.json(); msg = j?.message || j?.error || msg }catch{ try{ const t = await r.text(); if(t) msg = t }catch{} }
+    try{
+      const j = await r.json();
+      if (j && typeof j === 'object') {
+        if (j.errors && typeof j.errors === 'object') {
+          const parts = Object.entries(j.errors)
+            .map(([field, m]) => `${String(field)}: ${String(m)}`)
+          if (parts.length) msg = parts.join('; ')
+        } else if (j.message || j.error) {
+          msg = j.message || j.error || msg
+        }
+      }
+    }catch{
+      try{ const t = await r.text(); if(t) msg = t }catch{}
+    }
     const err:any = new Error(msg)
     err.status = r.status
     throw err

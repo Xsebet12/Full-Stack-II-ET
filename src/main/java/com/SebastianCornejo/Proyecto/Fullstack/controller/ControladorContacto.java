@@ -14,14 +14,25 @@ import java.util.Map;
 public class ControladorContacto {
     private static final Logger log = LoggerFactory.getLogger(ControladorContacto.class);
 
+    private final com.SebastianCornejo.Proyecto.Fullstack.service.ServicioCorreo servicioCorreo;
+
+    public ControladorContacto(com.SebastianCornejo.Proyecto.Fullstack.service.ServicioCorreo servicioCorreo) {
+        this.servicioCorreo = servicioCorreo;
+    }
+
     @PostMapping
-    @Operation(summary = "Enviar mensaje", description = "Recibe un mensaje y lo registra para posterior envío")
+    @Operation(summary = "Enviar mensaje", description = "Recibe un mensaje y envía un correo al administrador")
     public ResponseEntity<Map<String,Object>> enviar(@RequestBody Map<String,String> body){
         String nombre = body.getOrDefault("nombre","-");
         String correo = body.getOrDefault("correo","-");
         String mensaje = body.getOrDefault("mensaje","-");
         log.info("CONTACTO nombre={} correo={} mensaje={} ", nombre, correo, mensaje);
-        return ResponseEntity.accepted().body(Map.of("status","ok","message","Mensaje recibido"));
+        try {
+            servicioCorreo.enviarContacto(nombre, correo, mensaje);
+            return ResponseEntity.accepted().body(Map.of("status","ok","message","Mensaje enviado"));
+        } catch (Exception ex) {
+            log.warn("Fallo enviando correo de contacto: {}", ex.toString());
+            return ResponseEntity.accepted().body(Map.of("status","ok","message","Mensaje recibido"));
+        }
     }
 }
-

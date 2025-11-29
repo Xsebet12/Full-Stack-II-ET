@@ -31,6 +31,9 @@ public class SolicitudActualizacionUsuario {
     private String correo; // opcional
 
     private String direccion; // opcional
+    @Size(max = 15, message = "El teléfono debe tener máximo 15 caracteres")
+    @Pattern(regexp = "^[\\d\\s()+-]{7,15}$", message = "Formato permitido: dígitos, espacios, +, -, ()")
+    private String telefono; // opcional
     private Role rol; // opcional
     private Boolean enabled; // mapea a 'habilitado'
     private Integer comunaId; // opcional: cambiar comuna

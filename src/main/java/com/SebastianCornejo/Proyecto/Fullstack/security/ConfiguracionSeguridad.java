@@ -58,6 +58,7 @@ public class ConfiguracionSeguridad {
                     "/api/comunas/**",
                     "/api/regiones/**"
                 ).permitAll()
+                .requestMatchers("/api/contacto/**").permitAll()
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/productos/**", "/api/categorias/**").permitAll()
                 .anyRequest().authenticated()

@@ -53,6 +53,7 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
         cli.setCorreo(request.getCorreo());
         cli.setContrasena(passwordEncoder.encode(request.getContrasena()));
         cli.setDireccion(request.getDireccion());
+        if (request.getTelefono() != null) cli.setTelefono(request.getTelefono());
         // Subtipo cliente: usar valores del request si vienen, sino defaults
         cli.setTipoCliente(request.getTipoCliente() != null ? request.getTipoCliente() : com.SebastianCornejo.Proyecto.Fullstack.entity.TipoCliente.DETALLE);
         cli.setPuntosFidelizacion(request.getPuntosFidelizacion() != null ? request.getPuntosFidelizacion() : 0);
@@ -66,6 +67,7 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
         Comuna comuna = repositorioComuna.findById(Objects.requireNonNull(request.getComunaId()))
                 .orElseThrow(() -> new PeticionInvalidaException("Comuna no encontrada"));
         nuevo.setComuna(comuna);
+        if (request.getTelefono() != null) nuevo.setTelefono(request.getTelefono());
 
         Usuario saved = Objects.requireNonNull(userRepository.save(nuevo));
         return toDto(saved);
@@ -167,6 +169,7 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
             u.setCorreo(newMail);
         }
         if (request.getDireccion() != null) u.setDireccion(request.getDireccion().trim());
+        if (request.getTelefono() != null) u.setTelefono(request.getTelefono().trim());
         if (request.getRol() != null && u instanceof com.SebastianCornejo.Proyecto.Fullstack.entity.Empleado) {
             ((com.SebastianCornejo.Proyecto.Fullstack.entity.Empleado) u).setRol(request.getRol());
         }
@@ -231,6 +234,7 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
                 .rut(saved.getRut())
                 .dv(saved.getDv())
                 .correo(saved.getCorreo())
+                .telefono(saved.getTelefono())
                 .direccion(saved.getDireccion())
                 .comuna(saved.getComuna() != null ? saved.getComuna().getNomComuna() : null)
                 .region(saved.getComuna() != null && saved.getComuna().getRegion() != null ? saved.getComuna().getRegion().getNomRegion() : null)

@@ -21,6 +21,7 @@ export default function AdminUserEdit() {
   const [dv, setDv] = useState('')
   const [correo, setCorreo] = useState('')
   const [direccion, setDireccion] = useState('')
+  const [telefono, setTelefono] = useState('')
   const [rol, setRol] = useState('')
   const [enabled, setEnabled] = useState(true)
   const [comunas, setComunas] = useState([])
@@ -74,6 +75,12 @@ export default function AdminUserEdit() {
   }, [dv])
 
   const direccionValida = useMemo(() => direccion.trim().length > 0, [direccion])
+  const telefonoValido = useMemo(() => {
+    const t = (telefono || '').trim()
+    if (!t) return true
+    const re = /^[\d\s()+-]{7,15}$/
+    return re.test(t)
+  }, [telefono])
   const nombresValidos = useMemo(() => nombres.trim().length > 0, [nombres])
   const apellidosValidos = useMemo(() => apellidos.trim().length > 0, [apellidos])
   const comunaValida = useMemo(() => Boolean(comunaId), [comunaId])
@@ -109,6 +116,7 @@ export default function AdminUserEdit() {
           setDv(data?.dv ?? '')
           setCorreo(data?.correo ?? '')
           setDireccion(data?.direccion ?? '')
+          setTelefono(data?.telefono ?? '')
           setRol(data?.rol ?? '')
           setEnabled(Boolean(data?.enabled))
           setComunas(Array.isArray(comunasData) ? comunasData : [])
@@ -183,6 +191,7 @@ export default function AdminUserEdit() {
   if (!rutValido) { setError('RUT debe ser numérico y tener al menos 8 dígitos'); return }
   if (!dvValido) { setError('DV debe tener longitud 1 y ser 0-9 o K'); return }
   if (!emailValido) { setError('Correo solo admite dominios gmail.com o duocuc.cl'); return }
+  if (!telefonoValido) { setError('Teléfono con formato inválido'); return }
   if (celular && celularTomado) { setError('Número ya registrado'); return }
   if (!direccionValida) { setError('Dirección es requerida'); return }
     try {
@@ -194,6 +203,7 @@ export default function AdminUserEdit() {
         dv,
         correo,
         direccion,
+        telefono: telefono || null,
         ...(isEmpleado ? { rol } : {}),
         enabled,
         comunaId: Number(comunaId),
@@ -225,6 +235,7 @@ export default function AdminUserEdit() {
       setDv(updated?.dv ?? '')
       setCorreo(updated?.correo ?? '')
       setDireccion(updated?.direccion ?? '')
+      setTelefono(updated?.telefono ?? '')
       setRol(updated?.rol ?? '')
       setEnabled(Boolean(updated?.enabled))
       setRegionId(updated?.regionId ? String(updated.regionId) : '')
@@ -349,6 +360,13 @@ export default function AdminUserEdit() {
                         <input type="text" className={`form-control ${direccion ? (direccionValida ? 'is-valid' : 'is-invalid') : ''}`} value={direccion} onChange={(e) => setDireccion(e.target.value)} disabled={!enabled || saving} />
                         {!direccionValida && direccion && <div className="invalid-feedback">Requerido.</div>}
                       </div>
+                      {isCliente && (
+                        <div className="col-md-6">
+                          <label className="form-label">Teléfono</label>
+                          <input type="text" className={`form-control ${telefono ? (telefonoValido ? 'is-valid' : 'is-invalid') : ''}`} value={telefono} onChange={(e) => setTelefono(e.target.value)} disabled={!enabled || saving} />
+                          {!telefonoValido && telefono && <div className="invalid-feedback">Formato permitido: dígitos, espacios, +, -, ().</div>}
+                        </div>
+                      )}
                       <div className="col-md-6">
                         <label className="form-label">Región</label>
                         <select className="form-select" value={regionId} onChange={(e) => { setRegionId(e.target.value); setComunaId('') }} disabled={!enabled || saving}>

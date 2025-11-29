@@ -22,6 +22,7 @@ public class RespuestaUsuario {
     private String rut;
     private String dv;
     private String correo;
+    private String telefono;
     private Role rol;
     private String direccion;
     private String comuna;

@@ -18,11 +18,12 @@ export default function Account(){
       <h2 className="mb-4 text-youka">Mi cuenta</h2>
       {u ? (
         <div className="card p-3">
-          <div className="row g-3">
-            <div className="col-md-6"><strong>Nombre</strong><div>{u.nombres ?? u.nombre ?? '-'}</div></div>
-            <div className="col-md-6"><strong>Apellido</strong><div>{u.apellidos ?? '-'}</div></div>
-            <div className="col-md-6"><strong>Correo</strong><div>{u.correo ?? u.email ?? '-'}</div></div>
-            <div className="col-md-6"><strong>RUT</strong><div>{u.rut ? `${u.rut}-${u.dv ?? ''}` : '-'}</div></div>
+        <div className="row g-3">
+          <div className="col-md-6"><strong>Nombre</strong><div>{u.nombres ?? u.nombre ?? '-'}</div></div>
+          <div className="col-md-6"><strong>Apellido</strong><div>{u.apellidos ?? '-'}</div></div>
+          <div className="col-md-6"><strong>Correo</strong><div>{u.correo ?? u.email ?? '-'}</div></div>
+          <div className="col-md-6"><strong>Teléfono</strong><div>{u.telefono ?? u.celular ?? u.phone ?? u.fono ?? (u.contacto?.telefono ?? '-')}</div></div>
+          <div className="col-md-6"><strong>RUT</strong><div>{u.rut ? `${u.rut}-${u.dv ?? ''}` : '-'}</div></div>
             <div className="col-12"><strong>Preferencias</strong>
               <div className="mt-1">
                 <div>Categoría preferida: {prefs?.preferredCategory || '-'}</div>
