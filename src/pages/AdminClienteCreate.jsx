@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import api from '../lib/api'
+import { isValidRut } from '../lib/rut'
 import AdminHeader from '../components/AdminHeader'
 import AdminSidebar from '../components/AdminSidebar'
 import AdminOffcanvas from '../components/AdminOffcanvas'
@@ -67,6 +68,9 @@ export default function AdminClienteCreate() {
     const re = /^[0-9Kk]$/
     return re.test(dv.trim()) && dv.trim().length === 1
   }, [dv])
+  const rutDvMatch = useMemo(() => {
+    return isValidRut(rut, dv)
+  }, [rut, dv])
 
   const direccionValida = useMemo(() => direccion.trim().length > 0, [direccion])
   const telefonoValido = useMemo(() => {
@@ -79,7 +83,7 @@ export default function AdminClienteCreate() {
   const apellidosValidos = useMemo(() => apellidos.trim().length > 0, [apellidos])
   const contrasenaValida = useMemo(() => contrasena.trim().length > 0, [contrasena])
   const comunaValida = useMemo(() => Boolean(comunaId), [comunaId])
-  const formValido = nombresValidos && apellidosValidos && rutValido && dvValido && emailValido && !emailTomado && !remoteEmailTaken && !rutTomado && !remoteRutTaken && contrasenaValida && direccionValida && comunaValida
+  const formValido = nombresValidos && apellidosValidos && rutValido && dvValido && rutDvMatch && emailValido && !emailTomado && !remoteEmailTaken && !rutTomado && !remoteRutTaken && contrasenaValida && direccionValida && comunaValida
 
   useEffect(() => {
     let ignore = false
@@ -176,6 +180,7 @@ export default function AdminClienteCreate() {
     if (!rutValido) return 'RUT debe ser numérico y tener al menos 8 dígitos'
     if (rutTomado || remoteRutTaken) return 'RUT ya registrado'
     if (!dvValido) return 'DV debe tener longitud 1 y ser 0-9 o K'
+    if (!rutDvMatch) return 'DV no coincide con el RUT'
     if (!emailValido) return 'Correo solo admite dominios gmail.com o duocuc.cl'
     if (emailTomado || remoteEmailTaken) return 'Correo ya registrado'
     if (!contrasenaValida) return 'Contraseña es requerida'
@@ -305,8 +310,9 @@ export default function AdminClienteCreate() {
                   </div>
                   <div className="col-md-2">
                     <label className="form-label">DV</label>
-                    <input type="text" className={`form-control ${dv ? (dvValido ? 'is-valid' : 'is-invalid') : ''}`} value={dv} onChange={(e) => setDv(e.target.value)} />
+                    <input type="text" className={`form-control ${dv ? ((dvValido && rutDvMatch) ? 'is-valid' : 'is-invalid') : ''}`} value={dv} onChange={(e) => setDv(e.target.value)} />
                     {!dvValido && dv && <div className="invalid-feedback">Debe ser 0-9 o K y de longitud 1.</div>}
+                    {dvValido && rutValido && dv && !rutDvMatch && <div className="invalid-feedback d-block">DV no coincide con el RUT.</div>}
                   </div>
                   <div className="col-md-6">
                     <label className="form-label">Correo</label>

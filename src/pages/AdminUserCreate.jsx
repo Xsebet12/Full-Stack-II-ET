@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import api from '../lib/api'
+import { isValidRut } from '../lib/rut'
 import AdminHeader from '../components/AdminHeader'
 import AdminSidebar from '../components/AdminSidebar'
 import AdminOffcanvas from '../components/AdminOffcanvas'
@@ -29,6 +30,8 @@ export default function AdminUserCreate() {
   const [createdUser, setCreatedUser] = useState(null)
   const [existingUsers, setExistingUsers] = useState([])
   const [usersLoadError, setUsersLoadError] = useState('')
+  const [checkingRut, setCheckingRut] = useState(false)
+  const [remoteRutTaken, setRemoteRutTaken] = useState(false)
 
   // Validaciones en tiempo real
   const emailValido = useMemo(() => {
@@ -42,6 +45,11 @@ export default function AdminUserCreate() {
     const target = correo.trim().toLowerCase()
     return existingUsers.some(u => (u.correo || '').toLowerCase() === target)
   }, [correo, existingUsers])
+  const rutTomado = useMemo(() => {
+    if (!rut || !existingUsers?.length) return false
+    const target = rut.trim()
+    return existingUsers.some(u => (u.rut || '').trim() === target)
+  }, [rut, existingUsers])
 
   const rutValido = useMemo(() => {
     if (!rut.trim()) return false
@@ -54,6 +62,9 @@ export default function AdminUserCreate() {
     const re = /^[0-9Kk]$/
     return re.test(dv.trim()) && dv.trim().length === 1
   }, [dv])
+  const rutDvMatch = useMemo(() => {
+    return isValidRut(rut, dv)
+  }, [rut, dv])
 
   const direccionValida = useMemo(() => direccion.trim().length > 0, [direccion])
   const telefonoValido = useMemo(() => {
@@ -66,7 +77,7 @@ export default function AdminUserCreate() {
   const apellidosValidos = useMemo(() => apellidos.trim().length > 0, [apellidos])
   const contrasenaValida = useMemo(() => contrasena.trim().length > 0, [contrasena])
   const comunaValida = useMemo(() => Boolean(comunaId), [comunaId])
-  const formValido = nombresValidos && apellidosValidos && rutValido && dvValido && emailValido && !emailTomado && contrasenaValida && direccionValida && comunaValida
+  const formValido = nombresValidos && apellidosValidos && rutValido && dvValido && rutDvMatch && !rutTomado && !remoteRutTaken && emailValido && !emailTomado && contrasenaValida && direccionValida && comunaValida
 
   useEffect(() => {
     let ignore = false
@@ -115,11 +126,35 @@ export default function AdminUserCreate() {
     return () => { ignore = true }
   }, [])
 
+  useEffect(() => {
+    let mounted = true
+    let timer
+    setRemoteRutTaken(false)
+    if (!rutValido) { setCheckingRut(false); return () => { if (timer) clearTimeout(timer) } }
+    timer = setTimeout(async () => {
+      try {
+        if (!mounted) return
+        setCheckingRut(true)
+        const q = `/api/usuarios/check?rut=${encodeURIComponent(rut.trim())}`
+        const res = await api.get(q)
+        if (!mounted) return
+        setRemoteRutTaken(Boolean(res && res.taken))
+      } catch (err) {
+        setRemoteRutTaken(false)
+      } finally {
+        if (mounted) setCheckingRut(false)
+      }
+    }, 450)
+    return () => { mounted = false; if (timer) clearTimeout(timer) }
+  }, [rut, rutValido])
+
   const validate = () => {
     if (!nombresValidos) return 'Nombres es requerido'
     if (!apellidosValidos) return 'Apellidos es requerido'
     if (!rutValido) return 'RUT debe ser numérico y tener al menos 8 dígitos'
+    if (rutTomado || remoteRutTaken) return 'RUT ya registrado'
     if (!dvValido) return 'DV debe tener longitud 1 y ser 0-9 o K'
+    if (!rutDvMatch) return 'DV no coincide con el RUT'
     if (!emailValido) return 'Correo solo admite dominios gmail.com o duocuc.cl'
     if (!contrasenaValida) return 'Contraseña es requerida'
     if (!direccionValida) return 'Dirección es requerida'
@@ -137,6 +172,8 @@ export default function AdminUserCreate() {
     const token = localStorage.getItem('authToken')
     if (!token) { setError('Acción requiere autenticación. Inicie sesión.'); return }
     try {
+      const check = await api.get(`/api/usuarios/check?rut=${encodeURIComponent(rut.trim())}`)
+      if (check && check.taken) { setError('RUT ya registrado'); return }
       setCreating(true)
       const payload = {
         nombres: nombres.trim(),
@@ -229,13 +266,15 @@ export default function AdminUserCreate() {
                   </div>
                   <div className="col-md-4">
                     <label className="form-label">RUT</label>
-                    <input type="text" className={`form-control ${rut ? (rutValido ? 'is-valid' : 'is-invalid') : ''}`} value={rut} onChange={(e) => setRut(e.target.value)} />
+                    <input type="text" className={`form-control ${rut ? ((rutValido && !rutTomado && !remoteRutTaken) ? 'is-valid' : 'is-invalid') : ''}`} value={rut} onChange={(e) => setRut(e.target.value)} />
                     {!rutValido && rut && <div className="invalid-feedback">Debe ser numérico y tener al menos 8 dígitos.</div>}
+                    {rutValido && (rutTomado || remoteRutTaken) && <div className="invalid-feedback d-block">RUT ya registrado.</div>}
                   </div>
                   <div className="col-md-2">
                     <label className="form-label">DV</label>
-                    <input type="text" className={`form-control ${dv ? (dvValido ? 'is-valid' : 'is-invalid') : ''}`} value={dv} onChange={(e) => setDv(e.target.value)} />
+                    <input type="text" className={`form-control ${dv ? ((dvValido && rutDvMatch) ? 'is-valid' : 'is-invalid') : ''}`} value={dv} onChange={(e) => setDv(e.target.value)} />
                     {!dvValido && dv && <div className="invalid-feedback">Debe ser 0-9 o K y de longitud 1.</div>}
+                    {dvValido && rutValido && dv && !rutDvMatch && <div className="invalid-feedback d-block">DV no coincide con el RUT.</div>}
                   </div>
                   <div className="col-md-6">
                     <label className="form-label">Correo</label>
