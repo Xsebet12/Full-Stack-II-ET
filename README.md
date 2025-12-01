@@ -27,7 +27,7 @@ Aplicación fullstack de e‑commerce con backend Spring Boot y frontend React (
 - Admin: `admin1@youka.cl`, `admin2@youka.cl`
 - Clientes: `cliente1@youka.cl` … `cliente5@youka.cl`
 - Contraseña: misma para todos, almacenada como hash BCrypt en la base.
-  - Si no conoces el texto plano correspondiente al hash, registra una cuenta nueva con tu propia contraseña, o actualiza la contraseña de estos usuarios generando tu hash con BCrypt y reemplazándolo.
+- Akira2701
 
 **Documentación de API (Swagger / Postman)**
 - Swagger UI: `http://localhost:8080/swagger-ui/index.html`
