@@ -1,5 +1,0 @@
-desplegar el proyecto:
-.\mvnw.cmd spring-boot:run
-
-swagger:
-http://localhost:8080/swagger-ui.html
