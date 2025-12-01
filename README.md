@@ -96,8 +96,3 @@ OpenAPI JSON:
 - `PATCH /api/usuarios/{id}/estado` — cambiar habilitado (requiere `ADMIN`)
 - `GET/POST /api/proveedores` — gestión de proveedores (requiere autenticación)
 - `GET/POST /api/carrito` — gestión del carrito (requiere autenticación)
-
-## Troubleshooting
-- Si el backend no inicia, verifica la conectividad a Oracle y el Wallet (`src/main/resources/Wallet_BDY110120242`).
-- Con `spring.jpa.hibernate.ddl-auto=update` se crean/actualizan tablas en el schema configurado; asegúrate de tener permisos.
-- Logs de detalle de seguridad están habilitados en `application.properties` (útil para depurar roles y JWT).
