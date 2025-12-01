@@ -24,7 +24,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.math.BigDecimal;
 import java.util.*;
 import java.util.Objects;
-import com.SebastianCornejo.Proyecto.Fullstack.entity.Role;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -52,8 +51,8 @@ class CartServiceImplTest {
 
     @BeforeEach
     void setUp() {
-    user = Usuario.builder().id(1L).correo("client@example.com").habilitado(true).rol(Role.CLIENT).contrasena("pw").build();
-    principal = new org.springframework.security.core.userdetails.User("client@example.com", "pw", List.of(() -> "ROLE_CLIENT"));
+    user = Usuario.builder().id(1L).correo("client@example.com").habilitado(true).contrasena("pw").build();
+    principal = new org.springframework.security.core.userdetails.User("client@example.com", "pw", List.of(() -> "ROLE_CLIENTE"));
     product = Producto.builder().id(100L).nombre("Producto").precio(new BigDecimal("100.00")).stock(10).habilitado(true).build();
         item = ItemCarrito.builder().id(10L).producto(product).cantidad(2).precioUnitario(product.getPrecio()).build();
         cart = Carrito.builder().id(5L).usuario(user).items(new HashSet<>(Set.of(item))).build();

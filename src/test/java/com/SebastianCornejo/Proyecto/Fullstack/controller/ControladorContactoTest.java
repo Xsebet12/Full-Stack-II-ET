@@ -10,6 +10,8 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import com.SebastianCornejo.Proyecto.Fullstack.security.ProveedorTokenJwt;
+import com.SebastianCornejo.Proyecto.Fullstack.security.ServicioDetallesUsuario;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -27,6 +29,12 @@ class ControladorContactoTest {
 
     @MockBean
     private ServicioCorreo servicioCorreo;
+
+    @MockBean
+    private ProveedorTokenJwt proveedorTokenJwt;
+
+    @MockBean
+    private ServicioDetallesUsuario servicioDetallesUsuario;
 
     @Test
     @DisplayName("POST /api/contacto devuelve 202 y llama servicio")

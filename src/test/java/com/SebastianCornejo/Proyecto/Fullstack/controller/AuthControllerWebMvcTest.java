@@ -3,7 +3,7 @@ package com.SebastianCornejo.Proyecto.Fullstack.controller;
 import com.SebastianCornejo.Proyecto.Fullstack.dto.SolicitudAutenticacion;
 import com.SebastianCornejo.Proyecto.Fullstack.dto.SolicitudRegistro;
 import com.SebastianCornejo.Proyecto.Fullstack.dto.RespuestaUsuario;
-import com.SebastianCornejo.Proyecto.Fullstack.entity.Role;
+import com.SebastianCornejo.Proyecto.Fullstack.entity.TipoCliente;
 import com.SebastianCornejo.Proyecto.Fullstack.security.ProveedorTokenJwt;
 import com.SebastianCornejo.Proyecto.Fullstack.service.ServicioUsuario;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -72,7 +72,7 @@ class AuthControllerWebMvcTest {
         req.setCorreo("client@example.com");
     req.setContrasena("secret");
 
-        UserDetails principal = User.withUsername("client@example.com").password("x").roles("CLIENT").build();
+        UserDetails principal = User.withUsername("client@example.com").password("x").roles("CLIENTE").build();
         Authentication auth = new UsernamePasswordAuthenticationToken(principal, null, principal.getAuthorities());
     Mockito.when(authenticationManager.authenticate(Mockito.any(UsernamePasswordAuthenticationToken.class))).thenReturn(auth);
     Mockito.when(userService.existsByCorreo("client@example.com")).thenReturn(true);
@@ -99,7 +99,7 @@ class AuthControllerWebMvcTest {
     req.setContrasena("pwd");
         req.setDireccion("Calle 1");
     req.setComunaId(13101);
-        req.setRol(Role.CLIENT);
+        // Clientes no usan Role; se validará tipoCliente por defecto
 
         RespuestaUsuario resp = RespuestaUsuario.builder()
                 .id(1L)
@@ -108,7 +108,7 @@ class AuthControllerWebMvcTest {
                 .rut("12345678")
                 .dv("9")
         .correo("juan@gmail.com")
-                .rol(Role.CLIENT)
+                .tipoCliente(TipoCliente.DETALLE)
                 .direccion("Calle 1")
                 .enabled(true)
                 .createdAt(Instant.now())
@@ -121,6 +121,7 @@ class AuthControllerWebMvcTest {
         .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.id", Objects.requireNonNull(is(1))))
         .andExpect(jsonPath("$.correo", Objects.requireNonNull(is("juan@gmail.com"))))
-                .andExpect(jsonPath("$.rol", Objects.requireNonNull(is("CLIENT"))));
+                .andExpect(jsonPath("$.tipoCliente", Objects.requireNonNull(is("DETALLE"))))
+                .andExpect(jsonPath("$.rol", Objects.requireNonNull(is(nullValue()))));
     }
 }
