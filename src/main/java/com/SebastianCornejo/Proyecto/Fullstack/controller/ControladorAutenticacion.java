@@ -23,6 +23,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import java.security.SecureRandom;
 import com.SebastianCornejo.Proyecto.Fullstack.dto.SolicitudRecuperacionContrasena;
+import com.SebastianCornejo.Proyecto.Fullstack.dto.RespuestaRecuperacion;
 
 @RestController
 @RequestMapping("/api/autenticacion")
@@ -88,7 +89,7 @@ public class ControladorAutenticacion {
 
     @PostMapping("/forgot")
     @Operation(summary = "Recuperar contraseña", description = "Genera una contraseña temporal para el usuario indicado")
-    public ResponseEntity<com.SebastianCornejo.Proyecto.Fullstack.dto.RespuestaRecuperacion> recuperar(@Valid @RequestBody SolicitudRecuperacionContrasena req) {
+    public ResponseEntity<RespuestaRecuperacion> recuperar(@Valid @RequestBody SolicitudRecuperacionContrasena req) {
         if (req == null || req.getCorreo() == null || req.getCorreo().isBlank()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
@@ -97,7 +98,7 @@ public class ControladorAutenticacion {
         }
         String temp = generarTemporal();
         servicioUsuario.resetContrasena(req.getCorreo(), temp);
-        return ResponseEntity.ok(new com.SebastianCornejo.Proyecto.Fullstack.dto.RespuestaRecuperacion(temp));
+        return ResponseEntity.ok(new RespuestaRecuperacion(temp));
     }
 
     private static String generarTemporal(){

@@ -2,7 +2,10 @@ package com.SebastianCornejo.Proyecto.Fullstack.controller;
 
 import com.SebastianCornejo.Proyecto.Fullstack.dto.RespuestaUsuario;
 import com.SebastianCornejo.Proyecto.Fullstack.entity.Usuario;
+import com.SebastianCornejo.Proyecto.Fullstack.entity.Empleado;
+import com.SebastianCornejo.Proyecto.Fullstack.entity.Cliente;
 import com.SebastianCornejo.Proyecto.Fullstack.repository.RepositorioUsuario;
+import com.SebastianCornejo.Proyecto.Fullstack.repository.RepositorioEmpleado;
 import com.SebastianCornejo.Proyecto.Fullstack.dto.SolicitudActualizacionUsuario;
 import com.SebastianCornejo.Proyecto.Fullstack.service.ServicioUsuario;
 import io.swagger.v3.oas.annotations.Operation;
@@ -30,7 +33,7 @@ public class ControladorUsuario {
     private final RepositorioUsuario repositorioUsuario;
     private final ServicioUsuario servicioUsuario;
     @org.springframework.beans.factory.annotation.Autowired(required = false)
-    private com.SebastianCornejo.Proyecto.Fullstack.repository.RepositorioEmpleado repositorioEmpleado;
+    private RepositorioEmpleado repositorioEmpleado;
 
     public ControladorUsuario(RepositorioUsuario repositorioUsuario, ServicioUsuario servicioUsuario) {
         this.repositorioUsuario = repositorioUsuario;
@@ -144,7 +147,7 @@ public class ControladorUsuario {
                 .enabled(saved.getHabilitado())
                 .createdAt(saved.getCreadoEn());
         try {
-            if (saved instanceof com.SebastianCornejo.Proyecto.Fullstack.entity.Empleado e) {
+            if (saved instanceof Empleado e) {
                 b.rol(e.getRol())
                  .departamento(e.getDepartamento())
                  .sueldo(e.getSueldo())
@@ -159,7 +162,7 @@ public class ControladorUsuario {
                  .celular(e.getCelular())
                  .cuentaActiva(e.getCuentaActiva());
             }
-            if (saved instanceof com.SebastianCornejo.Proyecto.Fullstack.entity.Cliente c) {
+            if (saved instanceof Cliente c) {
                 b.tipoCliente(c.getTipoCliente())
                  .puntosFidelizacion(c.getPuntosFidelizacion())
                  .recibirPromos(c.getRecibirPromos())

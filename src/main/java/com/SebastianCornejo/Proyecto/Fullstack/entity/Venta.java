@@ -29,7 +29,15 @@ public class Venta {
     @Column(name = "total", precision = 19, scale = 2, nullable = false)
     private BigDecimal total;
 
+    @Column(name = "metodo_pago")
+    private String metodoPago;
+
+    @Column(name = "canal")
+    private String canal;
+
+    @Column(name = "estado_pago")
+    private String estadoPago;
+
     @OneToMany(mappedBy = "venta", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<DetalleVenta> detalles;
 }
-

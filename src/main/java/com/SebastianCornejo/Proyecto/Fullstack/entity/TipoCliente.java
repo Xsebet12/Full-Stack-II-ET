@@ -4,4 +4,3 @@ public enum TipoCliente {
     DETALLE,
     VIP
 }
-

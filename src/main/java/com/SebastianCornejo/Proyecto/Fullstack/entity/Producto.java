@@ -33,6 +33,22 @@ public class Producto {
     @JsonProperty("precio")
     private BigDecimal precio;
 
+    @Column(name = "precio_detalle", precision = 19, scale = 2)
+    @JsonProperty("precioDetalle")
+    private BigDecimal precioDetalle;
+
+    @Column(name = "precio_vip", precision = 19, scale = 2)
+    @JsonProperty("precioVip")
+    private BigDecimal precioVip;
+
+    @Column(name = "precio_mayorista", precision = 19, scale = 2)
+    @JsonProperty("precioMayorista")
+    private BigDecimal precioMayorista;
+
+    @Column(name = "costo_referencia", precision = 19, scale = 2)
+    @JsonProperty("costoReferencia")
+    private BigDecimal costoReferencia;
+
     @Column(name = "stock")
     @JsonProperty("stock")
     private Integer stock;

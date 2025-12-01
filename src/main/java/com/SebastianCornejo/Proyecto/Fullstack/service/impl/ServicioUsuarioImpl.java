@@ -6,7 +6,11 @@ import com.SebastianCornejo.Proyecto.Fullstack.dto.RespuestaUsuario;
 import com.SebastianCornejo.Proyecto.Fullstack.entity.Role;
 import com.SebastianCornejo.Proyecto.Fullstack.entity.Usuario;
 import com.SebastianCornejo.Proyecto.Fullstack.entity.Comuna;
+import com.SebastianCornejo.Proyecto.Fullstack.entity.Cliente;
+import com.SebastianCornejo.Proyecto.Fullstack.entity.Empleado;
+import com.SebastianCornejo.Proyecto.Fullstack.entity.TipoCliente;
 import com.SebastianCornejo.Proyecto.Fullstack.exception.PeticionInvalidaException;
+import com.SebastianCornejo.Proyecto.Fullstack.exception.RecursoNoEncontradoException;
 import com.SebastianCornejo.Proyecto.Fullstack.repository.RepositorioUsuario;
 import com.SebastianCornejo.Proyecto.Fullstack.repository.RepositorioEmpleado;
 import com.SebastianCornejo.Proyecto.Fullstack.repository.RepositorioCliente;
@@ -45,7 +49,7 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
         }
         // Registrar siempre como Cliente desde el flujo de cliente
         Usuario nuevo;
-        com.SebastianCornejo.Proyecto.Fullstack.entity.Cliente cli = new com.SebastianCornejo.Proyecto.Fullstack.entity.Cliente();
+        Cliente cli = new Cliente();
         cli.setNombres(request.getNombres());
         cli.setApellidos(request.getApellidos());
         cli.setRut(request.getRut());
@@ -55,7 +59,7 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
         cli.setDireccion(request.getDireccion());
         if (request.getTelefono() != null) cli.setTelefono(request.getTelefono());
         // Subtipo cliente: usar valores del request si vienen, sino defaults
-        cli.setTipoCliente(request.getTipoCliente() != null ? request.getTipoCliente() : com.SebastianCornejo.Proyecto.Fullstack.entity.TipoCliente.DETALLE);
+        cli.setTipoCliente(request.getTipoCliente() != null ? request.getTipoCliente() : TipoCliente.DETALLE);
         cli.setPuntosFidelizacion(request.getPuntosFidelizacion() != null ? request.getPuntosFidelizacion() : 0);
         if (request.getRecibirPromos() != null) cli.setRecibirPromos(request.getRecibirPromos());
         if (request.getDireccionEntrega() != null) cli.setDireccionEntrega(request.getDireccionEntrega());
@@ -87,7 +91,7 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
             if (request.getCelular() != null && repositorioEmpleado.existsByCelular(request.getCelular())) {
                 throw new PeticionInvalidaException("El número ya está registrado");
             }
-            com.SebastianCornejo.Proyecto.Fullstack.entity.Empleado emp = new com.SebastianCornejo.Proyecto.Fullstack.entity.Empleado();
+            Empleado emp = new Empleado();
             emp.setNombres(request.getNombres());
             emp.setApellidos(request.getApellidos());
             emp.setRut(request.getRut());
@@ -96,7 +100,7 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
             emp.setContrasena(passwordEncoder.encode(request.getContrasena()));
             emp.setDireccion(request.getDireccion());
             // Para empleado: usar rol del request si es ADMIN, sino ADMIN por defecto
-            emp.setRol(com.SebastianCornejo.Proyecto.Fullstack.entity.Role.ADMIN);
+            emp.setRol(Role.ADMIN);
             if (request.getDepartamento() != null) emp.setDepartamento(request.getDepartamento());
             if (request.getSueldo() != null) emp.setSueldo(request.getSueldo());
             if (request.getFechaContratacion() != null) emp.setFechaContratacion(request.getFechaContratacion());
@@ -111,7 +115,7 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
             if (request.getCuentaActiva() != null) emp.setCuentaActiva(request.getCuentaActiva());
             nuevo = emp;
         } else if ("CLIENTE".equals(t) || "CLIENTES".equals(t)) {
-            com.SebastianCornejo.Proyecto.Fullstack.entity.Cliente cli = new com.SebastianCornejo.Proyecto.Fullstack.entity.Cliente();
+            Cliente cli = new Cliente();
             cli.setNombres(request.getNombres());
             cli.setApellidos(request.getApellidos());
             cli.setRut(request.getRut());
@@ -119,7 +123,7 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
             cli.setCorreo(request.getCorreo());
             cli.setContrasena(passwordEncoder.encode(request.getContrasena()));
             cli.setDireccion(request.getDireccion());
-            cli.setTipoCliente(request.getTipoCliente() != null ? request.getTipoCliente() : com.SebastianCornejo.Proyecto.Fullstack.entity.TipoCliente.DETALLE);
+            cli.setTipoCliente(request.getTipoCliente() != null ? request.getTipoCliente() : TipoCliente.DETALLE);
             cli.setPuntosFidelizacion(request.getPuntosFidelizacion() != null ? request.getPuntosFidelizacion() : 0);
             if (request.getRecibirPromos() != null) cli.setRecibirPromos(request.getRecibirPromos());
             if (request.getDireccionEntrega() != null) cli.setDireccionEntrega(request.getDireccionEntrega());
@@ -144,7 +148,7 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 
     @Override
     public RespuestaUsuario findById(Long id) {
-        Usuario u = userRepository.findById(Objects.requireNonNull(id)).orElseThrow(() -> new com.SebastianCornejo.Proyecto.Fullstack.exception.RecursoNoEncontradoException("Usuario no encontrado"));
+        Usuario u = userRepository.findById(Objects.requireNonNull(id)).orElseThrow(() -> new RecursoNoEncontradoException("Usuario no encontrado"));
         return toDto(u);
     }
 
@@ -156,7 +160,7 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
         if (request.getRut() != null) {
             String newRut = request.getRut().trim();
             if (!newRut.equalsIgnoreCase(u.getRut()) && userRepository.existsByRut(newRut)) {
-                throw new com.SebastianCornejo.Proyecto.Fullstack.exception.PeticionInvalidaException("El RUT ya está registrado");
+                throw new PeticionInvalidaException("El RUT ya está registrado");
             }
             u.setRut(newRut);
         }
@@ -164,23 +168,23 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
         if (request.getCorreo() != null) {
             String newMail = request.getCorreo().trim();
             if (!newMail.equalsIgnoreCase(u.getCorreo()) && userRepository.existsByCorreo(newMail)) {
-                throw new com.SebastianCornejo.Proyecto.Fullstack.exception.PeticionInvalidaException("El correo ya está registrado");
+                throw new PeticionInvalidaException("El correo ya está registrado");
             }
             u.setCorreo(newMail);
         }
         if (request.getDireccion() != null) u.setDireccion(request.getDireccion().trim());
         if (request.getTelefono() != null) u.setTelefono(request.getTelefono().trim());
-        if (request.getRol() != null && u instanceof com.SebastianCornejo.Proyecto.Fullstack.entity.Empleado) {
-            ((com.SebastianCornejo.Proyecto.Fullstack.entity.Empleado) u).setRol(request.getRol());
+        if (request.getRol() != null && u instanceof Empleado) {
+            ((Empleado) u).setRol(request.getRol());
         }
         if (request.getEnabled() != null) u.setHabilitado(request.getEnabled());
         if (request.getComunaId() != null) {
         Comuna comuna = repositorioComuna.findById(Objects.requireNonNull(request.getComunaId()))
-                    .orElseThrow(() -> new com.SebastianCornejo.Proyecto.Fullstack.exception.PeticionInvalidaException("Comuna no encontrada"));
+                    .orElseThrow(() -> new PeticionInvalidaException("Comuna no encontrada"));
             u.setComuna(comuna);
         }
-        if (u instanceof com.SebastianCornejo.Proyecto.Fullstack.entity.Cliente) {
-            com.SebastianCornejo.Proyecto.Fullstack.entity.Cliente c = (com.SebastianCornejo.Proyecto.Fullstack.entity.Cliente) u;
+        if (u instanceof Cliente) {
+            Cliente c = (Cliente) u;
             if (request.getTipoCliente() != null) c.setTipoCliente(request.getTipoCliente());
             if (request.getPuntosFidelizacion() != null) c.setPuntosFidelizacion(request.getPuntosFidelizacion());
             if (request.getRecibirPromos() != null) c.setRecibirPromos(request.getRecibirPromos());
@@ -189,19 +193,19 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
             if (request.getLimiteCredito() != null) c.setLimiteCredito(request.getLimiteCredito());
             if (request.getFrecuenciaCompra() != null) c.setFrecuenciaCompra(request.getFrecuenciaCompra());
         }
-        if (u instanceof com.SebastianCornejo.Proyecto.Fullstack.entity.Empleado) {
-            com.SebastianCornejo.Proyecto.Fullstack.entity.Empleado e2 = (com.SebastianCornejo.Proyecto.Fullstack.entity.Empleado) u;
+        if (u instanceof Empleado) {
+            Empleado e2 = (Empleado) u;
             if (request.getCelular() != null) {
                 String newCel = request.getCelular().trim();
-                java.util.Optional<com.SebastianCornejo.Proyecto.Fullstack.entity.Empleado> other = repositorioEmpleado.findByCelular(newCel);
+                java.util.Optional<Empleado> other = repositorioEmpleado.findByCelular(newCel);
                 if (other.isPresent() && !other.get().getId().equals(e2.getId())) {
-                    throw new com.SebastianCornejo.Proyecto.Fullstack.exception.PeticionInvalidaException("El número ya está registrado");
+                    throw new PeticionInvalidaException("El número ya está registrado");
                 }
                 e2.setCelular(newCel);
             }
         }
-        if (u instanceof com.SebastianCornejo.Proyecto.Fullstack.entity.Empleado) {
-            com.SebastianCornejo.Proyecto.Fullstack.entity.Empleado e = (com.SebastianCornejo.Proyecto.Fullstack.entity.Empleado) u;
+        if (u instanceof Empleado) {
+            Empleado e = (Empleado) u;
             if (request.getDepartamento() != null) e.setDepartamento(request.getDepartamento());
             if (request.getSueldo() != null) e.setSueldo(request.getSueldo());
             if (request.getFechaContratacion() != null) e.setFechaContratacion(request.getFechaContratacion());
@@ -221,7 +225,7 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 
     @Override
     public void disable(Long id) {
-        Usuario u = userRepository.findById(Objects.requireNonNull(id)).orElseThrow(() -> new com.SebastianCornejo.Proyecto.Fullstack.exception.RecursoNoEncontradoException("Usuario no encontrado"));
+        Usuario u = userRepository.findById(Objects.requireNonNull(id)).orElseThrow(() -> new RecursoNoEncontradoException("Usuario no encontrado"));
         u.setHabilitado(false);
         userRepository.save(u);
     }
@@ -272,9 +276,9 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
     @Override
     public RespuestaUsuario setHabilitado(Long id, Boolean habilitado) {
         if (habilitado == null) {
-            throw new com.SebastianCornejo.Proyecto.Fullstack.exception.PeticionInvalidaException("El valor de 'habilitado' es requerido");
+            throw new PeticionInvalidaException("El valor de 'habilitado' es requerido");
         }
-        Usuario u = userRepository.findById(Objects.requireNonNull(id)).orElseThrow(() -> new com.SebastianCornejo.Proyecto.Fullstack.exception.RecursoNoEncontradoException("Usuario no encontrado"));
+        Usuario u = userRepository.findById(Objects.requireNonNull(id)).orElseThrow(() -> new RecursoNoEncontradoException("Usuario no encontrado"));
         u.setHabilitado(habilitado);
         return toDto(Objects.requireNonNull(userRepository.save(u)));
     }
@@ -282,7 +286,7 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
     @Override
     public void cambiarContrasena(String correo, String antigua, String nueva) {
         Usuario u = userRepository.findByCorreo(Objects.requireNonNull(correo))
-                .orElseThrow(() -> new com.SebastianCornejo.Proyecto.Fullstack.exception.RecursoNoEncontradoException("Usuario no encontrado"));
+                .orElseThrow(() -> new RecursoNoEncontradoException("Usuario no encontrado"));
         if (antigua == null || nueva == null || antigua.isBlank() || nueva.isBlank()) {
             throw new PeticionInvalidaException("Contraseñas inválidas");
         }
@@ -296,7 +300,7 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
     @Override
     public void resetContrasena(String correo, String nueva) {
         Usuario u = userRepository.findByCorreo(Objects.requireNonNull(correo))
-                .orElseThrow(() -> new com.SebastianCornejo.Proyecto.Fullstack.exception.RecursoNoEncontradoException("Usuario no encontrado"));
+                .orElseThrow(() -> new RecursoNoEncontradoException("Usuario no encontrado"));
         if (nueva == null || nueva.isBlank()) {
             throw new PeticionInvalidaException("Contraseña inválida");
         }
@@ -309,22 +313,22 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
         java.util.List<RespuestaUsuario> out = new java.util.ArrayList<>();
         String t = tipo != null ? tipo.trim().toUpperCase() : null;
         if (t == null) {
-            java.util.List<com.SebastianCornejo.Proyecto.Fullstack.entity.Empleado> empleados =
+            java.util.List<Empleado> empleados =
                     (habilitado == null) ? repositorioEmpleado.findAll() : repositorioEmpleado.findByHabilitado(habilitado);
-            java.util.List<com.SebastianCornejo.Proyecto.Fullstack.entity.Cliente> clientes =
+            java.util.List<Cliente> clientes =
                     (habilitado == null) ? repositorioCliente.findAll() : repositorioCliente.findByHabilitado(habilitado);
             for (Usuario u : empleados) out.add(toDto(u));
             for (Usuario u : clientes) out.add(toDto(u));
             return out;
         }
         if ("EMPLEADOS".equals(t) || "EMPLEADO".equals(t)) {
-            java.util.List<com.SebastianCornejo.Proyecto.Fullstack.entity.Empleado> empleados =
+            java.util.List<Empleado> empleados =
                     (habilitado == null) ? repositorioEmpleado.findAll() : repositorioEmpleado.findByHabilitado(habilitado);
             for (Usuario u : empleados) out.add(toDto(u));
             return out;
         }
         if ("CLIENTES".equals(t) || "CLIENTE".equals(t)) {
-            java.util.List<com.SebastianCornejo.Proyecto.Fullstack.entity.Cliente> clientes =
+            java.util.List<Cliente> clientes =
                     (habilitado == null) ? repositorioCliente.findAll() : repositorioCliente.findByHabilitado(habilitado);
             for (Usuario u : clientes) out.add(toDto(u));
             return out;
@@ -332,7 +336,7 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
         // Si tipo desconocido, devolver unión como fallback
         java.util.List<com.SebastianCornejo.Proyecto.Fullstack.entity.Empleado> empleados =
                 (habilitado == null) ? repositorioEmpleado.findAll() : repositorioEmpleado.findByHabilitado(habilitado);
-        java.util.List<com.SebastianCornejo.Proyecto.Fullstack.entity.Cliente> clientes =
+            java.util.List<Cliente> clientes =
                 (habilitado == null) ? repositorioCliente.findAll() : repositorioCliente.findByHabilitado(habilitado);
         for (Usuario u : empleados) out.add(toDto(u));
         for (Usuario u : clientes) out.add(toDto(u));

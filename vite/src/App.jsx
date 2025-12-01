@@ -20,6 +20,7 @@ import EditProfile from './client/pages/EditProfile'
 import Preferences from './client/pages/Preferences'
 import ForgotPassword from './client/pages/ForgotPassword'
 import ClientChangePassword from './client/pages/ChangePassword'
+import MisOrdenes from './client/pages/MisOrdenes'
 import AdminLogin from './pages/AdminLogin'
 import AdminHome from './pages/AdminHome'
 import Youka from './pages/Youka'
@@ -57,6 +58,7 @@ export default function App() {
         <Route path="/perfil" element={<ProtectedRoute><Account /></ProtectedRoute>} />
         <Route path="/perfil/editar" element={<ProtectedRoute><EditProfile /></ProtectedRoute>} />
         <Route path="/preferencias" element={<ProtectedRoute><Preferences /></ProtectedRoute>} />
+        <Route path="/mis-ordenes" element={<ProtectedRoute><MisOrdenes /></ProtectedRoute>} />
         <Route path="/sobre-nosotros" element={<About />} />
         <Route path="/contacto" element={<Contact />} />
         <Route path="/locales" element={<Stores />} />
@@ -85,6 +87,7 @@ export default function App() {
         <Route path="/admin/users/create/empleado" element={<AdminEmpleadoCreate />} />
         <Route path="/admin/users/create/cliente" element={<AdminClienteCreate />} />
         <Route path="/admin/users/:id/edit" element={<AdminUserEdit />} />
+        <Route path="/admin/orders" element={<AdminOrders />} />
       </Routes>
       </div>
       {isAdmin ? null : <Footer />}
@@ -92,3 +95,4 @@ export default function App() {
   )
 }
 import AdminChangePassword from './pages/AdminChangePassword'
+import AdminOrders from './pages/AdminOrders'

@@ -1,18 +1,16 @@
 package com.SebastianCornejo.Proyecto.Fullstack.dto;
 
-import java.util.List;
-
-public class SolicitudVentaDirecta {
-    private List<Item> items;
+public class SolicitudVentaOpcional {
     private String metodoPago;
     private String canal;
+    private java.util.List<Item> items;
 
-    public List<Item> getItems() { return items; }
-    public void setItems(List<Item> items) { this.items = items; }
     public String getMetodoPago() { return metodoPago; }
     public void setMetodoPago(String metodoPago) { this.metodoPago = metodoPago; }
     public String getCanal() { return canal; }
     public void setCanal(String canal) { this.canal = canal; }
+    public java.util.List<Item> getItems() { return items; }
+    public void setItems(java.util.List<Item> items) { this.items = items; }
 
     public static class Item {
         private Long productoId;

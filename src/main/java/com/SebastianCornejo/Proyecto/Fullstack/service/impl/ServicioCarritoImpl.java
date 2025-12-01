@@ -7,6 +7,8 @@ import com.SebastianCornejo.Proyecto.Fullstack.entity.Carrito;
 import com.SebastianCornejo.Proyecto.Fullstack.entity.ItemCarrito;
 import com.SebastianCornejo.Proyecto.Fullstack.entity.Producto;
 import com.SebastianCornejo.Proyecto.Fullstack.entity.Usuario;
+import com.SebastianCornejo.Proyecto.Fullstack.entity.Cliente;
+import com.SebastianCornejo.Proyecto.Fullstack.entity.TipoCliente;
 import com.SebastianCornejo.Proyecto.Fullstack.exception.PeticionInvalidaException;
 import com.SebastianCornejo.Proyecto.Fullstack.exception.RecursoNoEncontradoException;
 import com.SebastianCornejo.Proyecto.Fullstack.repository.RepositorioItemCarrito;
@@ -67,7 +69,8 @@ public class ServicioCarritoImpl implements ServicioCarrito {
             .build())));
     Producto producto = repositorioProducto.findById(Objects.requireNonNull(request.getProductoId()))
     .orElseThrow(() -> new RecursoNoEncontradoException("Producto no encontrado con id " + request.getProductoId()));
-        if (producto.getPrecio() == null || producto.getPrecio().compareTo(BigDecimal.ZERO) <= 0) {
+        BigDecimal basePrice = producto.getPrecio();
+        if (basePrice == null || basePrice.compareTo(BigDecimal.ZERO) <= 0) {
             throw new PeticionInvalidaException("Producto sin precio válido");
         }
     ItemCarrito item = repositorioItemCarrito.findByCarritoIdAndProductoId(
@@ -81,11 +84,18 @@ public class ServicioCarritoImpl implements ServicioCarrito {
             throw new PeticionInvalidaException("Stock insuficiente. Disponible: " + disponible);
         }
         if (item == null) {
+            BigDecimal unitPrice = producto.getPrecio();
+            if (user instanceof Cliente cliente) {
+                TipoCliente tipo = cliente.getTipoCliente();
+                if (tipo == TipoCliente.VIP) {
+                    unitPrice = unitPrice.multiply(new java.math.BigDecimal("0.85"));
+                }
+            }
             item = ItemCarrito.builder()
                 .carrito(cart)
                 .producto(producto)
                 .cantidad(request.getCantidad())
-                .precioUnitario(producto.getPrecio())
+                .precioUnitario(unitPrice)
                 .build();
             if (cart.getItems() == null) cart.setItems(new HashSet<>());
             cart.getItems().add(Objects.requireNonNull(item));

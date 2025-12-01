@@ -21,6 +21,9 @@ import com.SebastianCornejo.Proyecto.Fullstack.repository.RepositorioUsuario;
 import com.SebastianCornejo.Proyecto.Fullstack.repository.RepositorioCategoria;
 import com.SebastianCornejo.Proyecto.Fullstack.repository.RepositorioProducto;
 import com.SebastianCornejo.Proyecto.Fullstack.entity.Comuna;
+import com.SebastianCornejo.Proyecto.Fullstack.entity.Empleado;
+import com.SebastianCornejo.Proyecto.Fullstack.repository.RepositorioRegion;
+import com.SebastianCornejo.Proyecto.Fullstack.repository.RepositorioComuna;
 
 @SpringBootApplication
 @SecurityScheme(name = "bearerAuth", type = SecuritySchemeType.HTTP, scheme = "bearer", bearerFormat = "JWT")
@@ -35,8 +38,8 @@ public class ProyectoFullstackLlReactApplication {
                                             PasswordEncoder codificadorContrasena,
                                             RepositorioCategoria repositorioCategoria,
                                             RepositorioProducto repositorioProducto,
-                                            com.SebastianCornejo.Proyecto.Fullstack.repository.RepositorioRegion repoRegion,
-                                            com.SebastianCornejo.Proyecto.Fullstack.repository.RepositorioComuna repoComuna,
+                                            RepositorioRegion repoRegion,
+                                            RepositorioComuna repoComuna,
                                             PlatformTransactionManager transactionManager) {
         TransactionTemplate tx = new TransactionTemplate(Objects.requireNonNull(transactionManager));
         return args -> tx.execute(status -> {
@@ -60,7 +63,7 @@ public class ProyectoFullstackLlReactApplication {
                 comunaPorDefecto = repoComuna.findByNomComunaIgnoreCase("Santiago")
                                 .orElseGet(() -> repoComuna.save(Comuna.builder().idComuna(13101).nomComuna("Santiago").region(region).build()));
             }
-            com.SebastianCornejo.Proyecto.Fullstack.entity.Empleado administrador = new com.SebastianCornejo.Proyecto.Fullstack.entity.Empleado();
+            Empleado administrador = new Empleado();
             administrador.setNombres("Admin");
             administrador.setApellidos("User");
             administrador.setRut(rutAdmin);

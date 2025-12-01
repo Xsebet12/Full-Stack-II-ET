@@ -3,14 +3,16 @@ package com.SebastianCornejo.Proyecto.Fullstack.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import java.math.BigDecimal;
+import java.time.Instant;
 
 @Data
 @AllArgsConstructor
-public class RespuestaVenta {
+public class OrdenResumen {
     private Long id;
+    private Instant fecha;
     private BigDecimal total;
-    private Integer cantidadItems;
-    private String mensaje;
+    private String estadoPago;
+    private String estadoEnvio;
     private String numeroSeguimiento;
     private Long numeroBoleta;
 }

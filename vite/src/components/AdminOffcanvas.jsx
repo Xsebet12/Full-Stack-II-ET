@@ -20,6 +20,9 @@ export default function AdminOffcanvas() {
           <li className="mt-3"><span className="nav-link fw-bold">Proveedores</span></li>
           <li><Link className="nav-link" to="/admin/providers/new" data-bs-dismiss="offcanvas">Crear</Link></li>
           <li><Link className="nav-link" to="/admin/providers" data-bs-dismiss="offcanvas">Modificar</Link></li>
+
+          <li className="mt-3"><span className="nav-link fw-bold">Ordenes</span></li>
+          <li><Link className="nav-link" to="/admin/orders" data-bs-dismiss="offcanvas">Visualizar</Link></li>
         </ul>
       </div>
     </div>

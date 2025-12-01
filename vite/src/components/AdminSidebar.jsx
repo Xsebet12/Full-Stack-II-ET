@@ -15,6 +15,9 @@ export default function AdminSidebar() {
         <li className="mt-3"><span className="nav-link fw-bold">Proveedores</span></li>
         <li><Link className="nav-link" to="/admin/providers/new">Crear</Link></li>
         <li><Link className="nav-link" to="/admin/providers">Visualizar</Link></li>
+
+        <li className="mt-3"><span className="nav-link fw-bold">Ordenes</span></li>
+        <li><Link className="nav-link" to="/admin/orders">Visualizar</Link></li>
       </ul>
     </aside>
   )

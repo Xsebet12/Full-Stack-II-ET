@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RepositorioVenta extends JpaRepository<Venta, Long> {
+    java.util.List<Venta> findByUsuarioId(Long usuarioId);
 }
-

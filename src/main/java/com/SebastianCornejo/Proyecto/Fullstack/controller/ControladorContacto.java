@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.Map;
+import com.SebastianCornejo.Proyecto.Fullstack.service.ServicioCorreo;
 
 @RestController
 @RequestMapping("/api/contacto")
@@ -14,9 +15,9 @@ import java.util.Map;
 public class ControladorContacto {
     private static final Logger log = LoggerFactory.getLogger(ControladorContacto.class);
 
-    private final com.SebastianCornejo.Proyecto.Fullstack.service.ServicioCorreo servicioCorreo;
+    private final ServicioCorreo servicioCorreo;
 
-    public ControladorContacto(com.SebastianCornejo.Proyecto.Fullstack.service.ServicioCorreo servicioCorreo) {
+    public ControladorContacto(ServicioCorreo servicioCorreo) {
         this.servicioCorreo = servicioCorreo;
     }
 

@@ -13,7 +13,7 @@ import lombok.Data;
 @Data
 @Schema(description = "Campos para actualizar un usuario (ADMIN)")
 public class SolicitudActualizacionUsuario {
-    private String nombres; // opcional, si viene se valida longitud > 0 del lado servicio si se requiere
+    private String nombres; 
     private String apellidos; // opcional
 
     // Si se envía rut, debe ser sólo dígitos y de largo mínimo 8

@@ -139,6 +139,52 @@ export async function getProfile(){
   const r=await fetch('/api/usuarios/me',{headers: buildHeaders({'Accept':'application/json'})})
   return r.json()
 }
+
+export async function getMyOrders(){
+  const r = await fetch('/api/ventas/mias',{
+    method:'GET',
+    headers: buildHeaders({'Accept':'application/json'}),
+    credentials:'same-origin'
+  })
+  if(!r.ok){
+    let msg = `No se pudo obtener órdenes (HTTP ${r.status})`
+    try{ const j = await r.json(); msg = j?.message || j?.error || msg }
+    catch{ try{ const t = await r.text(); if(t) msg = t }catch{} }
+    const err:any = new Error(msg)
+    err.status = r.status
+    throw err
+  }
+  return r.json()
+}
+
+export async function getMyOrdersDetailed(){
+  try{
+    const r = await fetch('/api/ventas/mias/detalles',{
+      method:'GET',
+      headers: buildHeaders({'Accept':'application/json'}),
+      credentials:'same-origin'
+    })
+    if(!r.ok){
+      if(r.status===404){
+        const r2 = await fetch('/api/ventas/mias',{
+          method:'GET',
+          headers: buildHeaders({'Accept':'application/json'}),
+          credentials:'same-origin'
+        })
+        if(!r2.ok){
+          let msg2 = `No se pudo obtener órdenes (HTTP ${r2.status})`
+          try{ const j2 = await r2.json(); msg2 = j2?.message || j2?.error || msg2 }catch{}
+          const err2:any = new Error(msg2); err2.status = r2.status; throw err2
+        }
+        return r2.json()
+      }
+      let msg = `No se pudo obtener órdenes (HTTP ${r.status})`
+      try{ const j = await r.json(); msg = j?.message || j?.error || msg }catch{}
+      const err:any = new Error(msg); err.status = r.status; throw err
+    }
+    return r.json()
+  }catch(e){ throw e }
+}
 export async function checkout(){
   const r = await fetch('/api/ventas/ingresar',{
     method:'POST',
@@ -147,6 +193,42 @@ export async function checkout(){
   })
   if(!r.ok){
     let msg=`No se pudo procesar la compra (HTTP ${r.status})`
+    try{ const j=await r.json(); msg=j?.message||j?.error||msg }
+    catch{ try{ const t=await r.text(); if(t) msg=t }catch{} }
+    const err:any = new Error(msg)
+    err.status = r.status
+    throw err
+  }
+  return r.json()
+}
+
+export async function checkoutWithItems(body:{metodoPago?:string; canal?:string; items:{productoId:number; cantidad:number}[]}){
+  const r = await fetch('/api/ventas/ingresar',{
+    method:'POST',
+    headers: buildHeaders({'Accept':'application/json','Content-Type':'application/json'}),
+    credentials:'same-origin',
+    body: JSON.stringify(body)
+  })
+  if(!r.ok){
+    let msg=`No se pudo procesar la compra (HTTP ${r.status})`
+    try{ const j=await r.json(); msg=j?.message||j?.error||msg }
+    catch{ try{ const t=await r.text(); if(t) msg=t }catch{} }
+    const err:any = new Error(msg)
+    err.status = r.status
+    throw err
+  }
+  return r.json()
+}
+
+export async function acceptOrder(id:number){
+  const r = await fetch(`/api/ventas/${id}/aceptar`,{
+    method:'POST',
+    headers: buildHeaders({'Accept':'application/json','Content-Type':'application/json'}),
+    credentials:'same-origin',
+    body: JSON.stringify({})
+  })
+  if(!r.ok){
+    let msg=`No se pudo confirmar el pago (HTTP ${r.status})`
     try{ const j=await r.json(); msg=j?.message||j?.error||msg }
     catch{ try{ const t=await r.text(); if(t) msg=t }catch{} }
     const err:any = new Error(msg)
@@ -188,30 +270,10 @@ export function getPendingItems(){ return getPending() }
 export async function processPendingCheckout(){
   const items = getPending()
   if(items.length===0) return checkout()
-  try{
-    for(const it of items){
-      await addToCart(Number(it.productoId), Number(it.cantidad))
-    }
-    clearPending()
-    return checkout()
-  }catch(e:any){
-    const r = await fetch('/api/ventas/ingresar-directa',{
-      method:'POST',
-      headers: buildHeaders({'Accept':'application/json','Content-Type':'application/json'}),
-      credentials:'same-origin',
-      body:JSON.stringify({ items: items.map(it=>({productoId:Number(it.productoId), cantidad:Number(it.cantidad)})) })
-    })
-    if(!r.ok){
-      let msg=`No se pudo completar la compra (HTTP ${r.status})`
-      try{ const j=await r.json(); msg=j?.message||j?.error||msg }
-      catch{ try{ const t=await r.text(); if(t) msg=t }catch{} }
-      const err:any = new Error(msg)
-      err.status = r.status
-      throw err
-    }
-    clearPending()
-    return r.json()
-  }
+  const body = { items: items.map(it=>({productoId:Number(it.productoId), cantidad:Number(it.cantidad)})), canal: 'Web' }
+  const resp = await checkoutWithItems(body as any)
+  clearPending()
+  return resp
 }
 
 export async function sendContacto(body:{nombre:string;correo:string;mensaje:string}){
