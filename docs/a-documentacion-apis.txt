@@ -1,7 +1,7 @@
 Titulo: Documentación de APIs
 Version: 1.0
 Fecha: 09/12/2025
-Proyecto: Fullstack-Eva-3
+Proyecto: Fullstack-Eva-ET
 
 Resumen
 - Backend Spring Boot expone endpoints REST JSON para autenticación, productos, carrito y ventas.
