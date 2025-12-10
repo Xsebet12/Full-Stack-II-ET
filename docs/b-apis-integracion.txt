@@ -1,7 +1,7 @@
 Titulo: APIs e Integración
 Version: 1.0
 Fecha: 09/12/2025
-Proyecto: Fullstack-Eva-3
+Proyecto: Fullstack-Eva-ET
 
 Patrón de Integración
 - Frontend React (Vite) consume APIs REST con `fetch` y encabezados de autenticación.
